@@ -48,7 +48,8 @@
             <WrapPanel>
                 <!-- Product Cards -->
                 <!-- Add this click event to the product card in ProductListPage.xaml -->
-                <Border MouseDown="Product_Click" Width="200" Height="250" BorderBrush="LightGray" BorderThickness="1" Margin="10">
+                <!-- MouseDown="Product_Click" -->
+                <Border  Width="200" Height="250" BorderBrush="LightGray" BorderThickness="1" Margin="10">
                     <StackPanel>
                         <Image  Height="100" Margin="5"/>
                         <TextBlock Text="Lenovo Ideapad S340" FontSize="16" Margin="5"/>
