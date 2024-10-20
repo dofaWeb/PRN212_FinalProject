@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\
 PRN212_FinalProject
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\Final Project PRN\PRN212_FinalProject\App.xaml
-11407045341
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\App.xaml
+41286367761
 
-4-394738250
+71955174673
 198-556154604
-MainWindow.xaml;
+Admin.xaml;Login.xaml;MainWindow.xaml;User.xaml;
 
 False
 
