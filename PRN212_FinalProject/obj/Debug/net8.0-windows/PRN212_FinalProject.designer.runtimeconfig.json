@@ -12,7 +12,7 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\gioak\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\NHAT\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\gioak\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
