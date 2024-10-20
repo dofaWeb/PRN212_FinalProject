@@ -15,7 +15,7 @@
 
         <!-- Right Panel: Product Details -->
         <StackPanel Grid.Column="1" >
-            <Button Content="Back" Width="80" Margin="0 0 0 20" Click="BackButton_Click"/>
+            <Button Content="Back" Width="80" Margin="0 0 0 20"/>
 
             <!-- Product Image and Details -->
             <StackPanel Orientation="Horizontal">
