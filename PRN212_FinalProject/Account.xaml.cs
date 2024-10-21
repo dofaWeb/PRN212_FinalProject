@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace PRN212_FinalProject
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Account.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Account : Window
     {
-        public Login()
+        public Account()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
