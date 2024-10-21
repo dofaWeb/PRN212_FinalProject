@@ -420,3 +420,4 @@ D:\PRN212_Final\PRN212_Final\PRN212_FinalProject\obj\Debug\net8.0-windows\PRN212
 D:\PRN212_Final\PRN212_Final\PRN212_FinalProject\obj\Debug\net8.0-windows\PRN212_FinalProject.genruntimeconfig.cache
 D:\PRN212_Final\PRN212_Final\PRN212_FinalProject\obj\Debug\net8.0-windows\ref\PRN212_FinalProject.dll
 D:\PRN212_Final\PRN212_Final\PRN212_FinalProject\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\PRN212_Final\PRN212_Final\PRN212_FinalProject\bin\Debug\net8.0-windows\appsettings.json

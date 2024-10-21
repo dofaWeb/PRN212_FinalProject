@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PRN212_FinalProject.ViewModel
@@ -38,11 +39,22 @@ namespace PRN212_FinalProject.ViewModel
 
             switch (RoleId)
             {
-                case "Role0001": new Admin();
+                case "Role0001":
+                    Admin adminWindow = new Admin();
+                    adminWindow.Show();
                     break;
 
-                case "Role0002": new User(); 
-                    break; 
+
+                case "Role0002": 
+                    User userWindow = new User();
+                    userWindow.Show();
+                    break;
+
+
+                default:
+                    MessageBox.Show("UserName or PassWord invalid");
+                    break;
+
 
 
             }
