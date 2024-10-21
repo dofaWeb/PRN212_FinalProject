@@ -10,24 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PRN212_FinalProject
 {
     /// <summary>
-    /// Interaction logic for Admin.xaml
+    /// Interaction logic for SupplierPage.xaml
     /// </summary>
-    public partial class Admin : Window
+    public partial class SupplierPage : Page
     {
-        public Admin()
+        public SupplierPage()
         {
             InitializeComponent();
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            MainPage.Content = new SupplierPage();
-
         }
     }
 }
