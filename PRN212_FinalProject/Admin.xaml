@@ -19,7 +19,7 @@
             <MenuItem Height="50" Width="100" Header="Product" Background="Red"></MenuItem>
             <MenuItem Height="50" Width="100" Header="Category" Background="Yellow" ></MenuItem>
             <MenuItem Height="50" Width="100" Header="User" Background="Pink"></MenuItem>
-            <MenuItem Height="50" Width="100" Header="Statistics" Background="BlueViolet"></MenuItem>
+            <MenuItem Height="50" Width="100" Header="Supplier" Background="BlueViolet" Click="MenuItem_Click"></MenuItem>
         </Menu>
 
     </Grid>
