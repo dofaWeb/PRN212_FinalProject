@@ -43,13 +43,14 @@
         <TextBlock Grid.Row="3" Grid.Column="0" Text="contact info"></TextBlock>
         <TextBlock Grid.Row="4" Grid.Column="0" Text="address"></TextBlock>
 
-        <TextBox Grid.Row="1" Grid.Column="1" ></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" ></TextBox>
-        <TextBox Grid.Row="3" Grid.Column="1" ></TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1" ></TextBox>
+        <TextBox Text="{Binding SupplierId, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" ></TextBox>
+        <TextBox Text="{Binding SupplierName, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" ></TextBox>
+        <TextBox Text="{Binding SupplierContactInfo, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" ></TextBox>
+        <TextBox Text="{Binding SupplierAddress, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" ></TextBox>
 
-        <Button Grid.Row="2" Grid.Column="2" Content="Add"></Button>
+        <Button Command="{Binding AddButton}" Grid.Row="2" Grid.Column="2" Content="Add"></Button>
         <Button Grid.Row="2" Grid.Column="3" Content="Update"></Button>
         <Button Grid.Row="2" Grid.Column="4" Content="Delete"></Button>
     </Grid>
 </Page>
+

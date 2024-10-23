@@ -571,3 +571,7 @@ D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\SupllierPage.b
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Supplies.baml
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductItemPage.g.cs
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductItemPage.baml
+C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductItemPage.g.cs
+C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductPage.g.cs
+C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductItemPage.baml
+C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductPage.baml
