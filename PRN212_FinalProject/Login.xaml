@@ -49,5 +49,10 @@
             Content="Login" Width="100" 
             HorizontalAlignment="Center" 
             Margin="10"/>
+        <Button Grid.Row="3" Grid.Column="1" 
+Content="Register" Width="100" 
+HorizontalAlignment="Left" 
+Margin="357,10,0,10" Click="Button_Click"/>
+
     </Grid>
 </Window>

@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,25 +15,19 @@ using System.Windows.Shapes;
 namespace PRN212_FinalProject
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Register.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Register : Window
     {
-        public Login()
+        public Register()
         {
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Create an instance of Register window
-            Register registerWindow = new Register();
-            registerWindow.Show(); // Show the Register window
+            Login loginWindow = new Login();
+            loginWindow.Show(); // Show the Login
             this.Close(); // Optionally close the Login window
 
         }

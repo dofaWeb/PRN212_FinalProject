@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\
+D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\
 PRN212_FinalProject
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\Final Project PRN\PRN212_FinalProject\App.xaml
-101236810694
+D:\PRN212-Final\PRN212_FinalProject\App.xaml
+11-1051640229
 
-31-1204776579
-2262016005182
-Account.xaml;Admin.xaml;Login.xaml;MainWindow.xaml;ProductDetail.xaml;ProductItemPage.xaml;ProductPage.xaml;SupllierPage.xaml;Supplies.xaml;User.xaml;
+33148922942
+226190621163
+Account.xaml;Admin.xaml;Login.xaml;MainWindow.xaml;ProductDetail.xaml;ProductItemPage.xaml;ProductPage.xaml;Register.xaml;SupllierPage.xaml;Supplies.xaml;User.xaml;
 
 False
 
