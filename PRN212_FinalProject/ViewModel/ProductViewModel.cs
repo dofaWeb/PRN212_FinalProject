@@ -162,6 +162,7 @@ namespace PRN212_FinalProject.ViewModel
             db.Products.Add(newProduct);
             db.SaveChanges();
             Products.Add(newProduct);
+            OnPropertyChanged(nameof(Products));
             LoadProducts();
 
         }
@@ -193,8 +194,7 @@ namespace PRN212_FinalProject.ViewModel
                 // Find the index of the selected product in the Products collection
                 int index = Products.IndexOf(SelectItem);
 
-                if (index >= 0)
-                {
+               
                     // Update the product in the database
                     var existingProduct = db.Products.Include(p => p.Category).Include(p => p.Supplier).FirstOrDefault(p => p.Id == SelectItem.Id);
                     if (existingProduct != null)
@@ -210,13 +210,21 @@ namespace PRN212_FinalProject.ViewModel
                         // Save changes to the database
                         db.SaveChanges();
 
-                        // Update the product in the ObservableCollection
-                        Products[index] = existingProduct; // Use the existing product which now includes updated Category and Supplier
+                    // Update the product in the ObservableCollection
+                    var productToUpdate = Products.FirstOrDefault(p => p.Id == existingProduct.Id);
+                    if (productToUpdate != null)
+                    {
+                        // Update the properties of the product in the ObservableCollection
+                        productToUpdate.Name = existingProduct.Name;
+                        productToUpdate.Description = existingProduct.Description;
+                        productToUpdate.CategoryId = existingProduct.CategoryId; // Optional: If you want to keep category in the collection
+                        productToUpdate.SupplierId = existingProduct.SupplierId; // Optional: If you want to keep supplier in the collection
                     }
+                    OnPropertyChanged(nameof(Products));
+                    
                 }
             }
         }
-
 
     }
 }
