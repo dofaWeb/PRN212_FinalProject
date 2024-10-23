@@ -10,10 +10,16 @@
     <Compile Update="Admin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Entities\ProductItemPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ProductDetail.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProductPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="SupllierPage.xaml.cs">
@@ -27,6 +33,9 @@
     <Page Update="Admin.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Entities\ProductItemPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Login.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -34,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ProductDetail.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProductPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SupllierPage.xaml">

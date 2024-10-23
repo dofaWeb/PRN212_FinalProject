@@ -559,3 +559,15 @@ C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\PRN212
 C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ref\PRN212_FinalProject.dll
 C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\SupllierPage.g.cs
 C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\SupllierPage.baml
+D:\Final Project PRN\PRN212_FinalProject\bin\Debug\net8.0-windows\appsettings.json
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Account.g.cs
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductPage.g.cs
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\SupllierPage.g.cs
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Supplies.g.cs
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Account.baml
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductPage.baml
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\SupllierPage.baml
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Supplies.baml
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Entities\ProductItemPage.g.cs
+D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Entities\ProductItemPage.baml
