@@ -14,8 +14,10 @@ public partial class Product
     public string? Description { get; set; }
 
     public string? CategoryId { get; set; }
+  
 
     public string? SupplierId { get; set; }
+   
 
     public virtual Category? Category { get; set; }
 
