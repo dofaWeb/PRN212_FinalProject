@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PRN212_FinalProject.Entities
+namespace PRN212_FinalProject
 {
     /// <summary>
     /// Interaction logic for ProductItemPage.xaml
