@@ -2,6 +2,7 @@
 # Ignore cache and lref files
 /PRN212_FinalProject/obj/Debug/net8.0-windows/PRN212_FinalProject_MarkupCompile.i.cache
 /PRN212_FinalProject/obj/Debug/net8.0-windows/PRN212_FinalProject_MarkupCompile.i.lref
+/PRN212_FinalProject/obj/
 
 # Build results
 [Dd]ebug/
