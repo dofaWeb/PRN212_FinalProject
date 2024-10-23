@@ -10,27 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PRN212_FinalProject
+namespace PRN212_FinalProject.Entities
 {
     /// <summary>
-    /// Interaction logic for Admin.xaml
+    /// Interaction logic for ProductItemPage.xaml
     /// </summary>
-    public partial class Admin : Window
+    public partial class ProductItemPage : Page
     {
-        public Admin()
+        public ProductItemPage()
         {
             InitializeComponent();
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            MainPage.Content = new SupllierPage();
-        }
-        private void Product_Click(object sender, RoutedEventArgs e)
-        {
-            MainPage.Content = new ProductPage();
         }
     }
 }
