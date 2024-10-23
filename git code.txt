@@ -1,0 +1,24 @@
+khi mo project 
+ghi chu phai o nhanh main 
+1. git pull origin main
+khi pull code ve, ta code tao nhanh moi
+nhanh khong ton tai
+git branch phuc  
+lenh xoa nhanh
+git branch -D phuc
+lenh chuyen nhanh
+git checkout phuc
+- -------------------------------
+code xong roi
+phai o nhanh cua minh
+git add .
+ghi chu phan vua code 
+git commit -m "ghi chu"
+tha git code len sever
+git push origin phuc
+--------------------------------
+merge code
+mo git tren browser 
+mo repository tuong ung project
+create pull request 
+th1 
