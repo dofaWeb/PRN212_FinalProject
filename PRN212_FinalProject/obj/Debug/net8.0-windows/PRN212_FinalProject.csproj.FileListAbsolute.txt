@@ -689,3 +689,14 @@ S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Progra
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\SupllierPage.baml
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Supplies.baml
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\PRN212_F.7495E68D.Up2Date
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\Account.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductItemPage.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductPage.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\SupllierPage.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\Supplies.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\Account.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductItemPage.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductPage.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\SupllierPage.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\Supplies.baml

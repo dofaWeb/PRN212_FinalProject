@@ -21,5 +21,5 @@ public partial class ProductItem
 
     public virtual Product? Product { get; set; }
 
-    public virtual ICollection<VariationOption> VariationOptions { get; set; } = new List<VariationOption>();
+    public virtual ICollection<ProductConfiguration> ProductConfigurations { get; set; } = new List<ProductConfiguration>();
 }
