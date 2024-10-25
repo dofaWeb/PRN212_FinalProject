@@ -18,6 +18,9 @@ namespace PRN212_FinalProject.ViewModel
     {
         public ObservableCollection<Supplier> Suppliers { get; set; }
         public ICommand AddButton { get; set; }
+        public ICommand UpdateButton { get; set; }
+        public ICommand DeleteButton { get; set; }
+
         public void AddSupplier(Object Parameter)
         {
             DBContext dBContext = new DBContext();
@@ -30,17 +33,59 @@ namespace PRN212_FinalProject.ViewModel
             dBContext.Suppliers.Add(Addsupplier);
             dBContext.SaveChanges();
             LoadData();
-            _supplierName = "";
-            _supplierContactInfo = "";
-            _supplierAddress = "";
-            
+            SupplierId = "";
+            SupplierName = "";
+            SupplierContactInfo = "";
+            SupplierAddress = "";
 
+
+        }
+        public void UpdateSupplier(Object Parameter)
+        {
+            DBContext dBContext = new DBContext();
+            if (SelectedItem != null)
+            {
+                var existingSupllier = dBContext.Suppliers.Where(s => s.Id == SelectedItem.Id).FirstOrDefault();
+                if (existingSupllier != null)
+                {
+                    existingSupllier.Name = SupplierName;
+                    existingSupllier.ContactInfo = SupplierContactInfo;
+                    existingSupllier.Address = SupplierAddress;
+                    dBContext.SaveChanges();
+                    LoadData();
+                    OnPropertyChanged(nameof(Suppliers));
+                    SupplierId = "";
+                    SupplierName = "";
+                    SupplierContactInfo = "";
+                    SupplierAddress = "";
+                }
+            } 
+        }
+        public void DeleteSupplier(Object Parameter)
+        {
+            DBContext dBContext = new DBContext();
+            if (SelectedItem != null)
+            {
+                var existingSupllier = dBContext.Suppliers.Where(s => s.Id == SelectedItem.Id).FirstOrDefault();
+                if (existingSupllier != null)
+                {
+                    dBContext.Suppliers.Remove(existingSupllier);
+                    dBContext.SaveChanges() ;
+                    LoadData(); OnPropertyChanged(nameof(Suppliers));
+                    SupplierId = "";
+                    SupplierName = "";
+                    SupplierContactInfo = "";
+                    SupplierAddress = "";
+                }
+            }
         }
         public SupplierViewModel()
 
         {
             LoadData();
             AddButton = new RelayCommand(AddSupplier);
+            UpdateButton = new RelayCommand(UpdateSupplier);
+            DeleteButton = new RelayCommand(DeleteSupplier);
         }
         void LoadData()
         {
@@ -101,10 +146,10 @@ namespace PRN212_FinalProject.ViewModel
                 OnPropertyChanged(nameof(SelectedItem));
                 if (SelectedItem != null)
                 {
-                    _supplierId = _selectedItem.Id;
-                    _supplierName = _selectedItem.Name;
-                    _supplierContactInfo = _selectedItem.ContactInfo;
-                    _supplierAddress = _selectedItem.Address;
+                    SupplierId = _selectedItem.Id;
+                    SupplierName = _selectedItem.Name;
+                    SupplierContactInfo = _selectedItem.ContactInfo;
+                    SupplierAddress = _selectedItem.Address;
                 }   
             }
 
