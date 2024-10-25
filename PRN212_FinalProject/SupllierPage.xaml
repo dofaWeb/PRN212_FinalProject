@@ -28,13 +28,13 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <ListView ItemsSource="{Binding Suppliers}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5">
+        <ListView SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Suppliers}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="id" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="name" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding ContactInfo}" Header="contact info" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Address}" Header="address" Width="100"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Id,Mode=TwoWay}" Header="id" Width="100"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name,Mode=TwoWay}" Header="name" Width="100"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding ContactInfo,Mode=TwoWay}" Header="contact info" Width="100"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Address,Mode=TwoWay}" Header="address" Width="100"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -43,7 +43,7 @@
         <TextBlock Grid.Row="3" Grid.Column="0" Text="contact info"></TextBlock>
         <TextBlock Grid.Row="4" Grid.Column="0" Text="address"></TextBlock>
 
-        <TextBox Text="{Binding SupplierId, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" ></TextBox>
+        <TextBox IsReadOnly="True" Text="{Binding SupplierId, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" ></TextBox>
         <TextBox Text="{Binding SupplierName, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" ></TextBox>
         <TextBox Text="{Binding SupplierContactInfo, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" ></TextBox>
         <TextBox Text="{Binding SupplierAddress, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" ></TextBox>

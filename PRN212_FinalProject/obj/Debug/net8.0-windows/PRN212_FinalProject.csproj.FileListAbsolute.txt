@@ -851,3 +851,7 @@ S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Progra
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.g.cs
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.baml
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.baml
+C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.g.cs
+C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.g.cs
+C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.baml
+C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.baml

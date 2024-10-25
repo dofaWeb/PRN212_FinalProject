@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Cache;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -22,13 +23,18 @@ namespace PRN212_FinalProject.ViewModel
             DBContext dBContext = new DBContext();
             Supplier Addsupplier;
             Addsupplier = new Supplier();
-            Addsupplier.Id = _supplierId;
+            Addsupplier.Id = getNewSupplierId();
             Addsupplier.Name = _supplierName;
             Addsupplier.ContactInfo = _supplierContactInfo;
             Addsupplier.Address = _supplierAddress;
             dBContext.Suppliers.Add(Addsupplier);
             dBContext.SaveChanges();
             LoadData();
+            _supplierName = "";
+            _supplierContactInfo = "";
+            _supplierAddress = "";
+            
+
         }
         public SupplierViewModel()
 
@@ -40,6 +46,7 @@ namespace PRN212_FinalProject.ViewModel
         {
             DBContext dBContext = new DBContext();
             Suppliers = new ObservableCollection<Supplier>(dBContext.Suppliers.ToList());
+            OnPropertyChanged(nameof(Suppliers));
         }
 
         private string _supplierId;
@@ -53,7 +60,7 @@ namespace PRN212_FinalProject.ViewModel
             set
             {
                 _supplierId = value;
-                OnPropertyChanged(SupplierId);
+                OnPropertyChanged(nameof(SupplierId));
             }
         }
         public string SupplierName
@@ -62,7 +69,7 @@ namespace PRN212_FinalProject.ViewModel
             set
             {
                 _supplierName = value;
-                OnPropertyChanged(SupplierName);
+                OnPropertyChanged(nameof(SupplierName));
             }
         }
         public string SupplierContactInfo
@@ -70,7 +77,7 @@ namespace PRN212_FinalProject.ViewModel
             get { return _supplierContactInfo; }
             set
             {
-                _supplierContactInfo = value; OnPropertyChanged(SupplierContactInfo);
+                _supplierContactInfo = value; OnPropertyChanged(nameof(SupplierContactInfo));
             }
         }
         public string SupplierAddress
@@ -79,22 +86,56 @@ namespace PRN212_FinalProject.ViewModel
             set
             {
                 _supplierAddress = value;
-                OnPropertyChanged(SupplierAddress);
+                OnPropertyChanged(nameof(SupplierAddress));
             }
         }
 
-        private Supplier _showItem;
-        public Supplier ShowItem
+        private Supplier _selectedItem;
+        public Supplier SelectedItem
         {
-            get { return _showItem; }
+            get { return _selectedItem; }
             set
             {
+                _selectedItem = value;
 
+                OnPropertyChanged(nameof(SelectedItem));
+                if (SelectedItem != null)
+                {
+                    _supplierId = _selectedItem.Id;
+                    _supplierName = _selectedItem.Name;
+                    _supplierContactInfo = _selectedItem.ContactInfo;
+                    _supplierAddress = _selectedItem.Address;
+                }   
             }
 
 
 
 
+
+        }
+        
+        public string getNewSupplierId()
+        {
+            DBContext dbContext = new DBContext();
+            string lastId = dbContext.Suppliers
+                     .OrderByDescending(a => a.Id)
+                     .Select(a => a.Id)
+                     .FirstOrDefault();
+            if (lastId == null)
+            {
+                return "S0000001";
+            }
+            // Tách phần chữ (A) và phần số (0000001)
+            string prefix = lastId.Substring(0, 1); // Lấy ký tự đầu tiên
+            int number = int.Parse(lastId.Substring(1)); // Lấy phần số và chuyển thành số nguyên
+
+            // Tăng số lên 1
+            int newNumber = number + 1;
+
+            // Tạo ID mới với số đã tăng, định dạng lại với 7 chữ số
+            string newId = $"{prefix}{newNumber:D7}";
+
+            return newId;
         }
     }
 }
