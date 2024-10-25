@@ -846,3 +846,8 @@ D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\refint\PRN212_Final
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\PRN212_FinalProject.pdb
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\PRN212_FinalProject.genruntimeconfig.cache
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\ref\PRN212_FinalProject.dll
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\bin\Debug\net8.0-windows\appsettings.json
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.g.cs
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.g.cs
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.baml
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.baml
