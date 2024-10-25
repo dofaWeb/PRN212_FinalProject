@@ -27,7 +27,7 @@ namespace PRN212_FinalProject
             InitializeComponent();
             DataContext = new ProductViewModel();
         }
-        private void EditButton_Click(object sender, RoutedEventArgs e)
+        private void OptionButton_Click(object sender, RoutedEventArgs e)
         {
             // Get the selected product from the button's DataContext (which is bound to the current row's product)
             var product = (Product)((Button)sender).DataContext;
