@@ -36,8 +36,8 @@ namespace PRN212_FinalProject.ViewModel
             db = new Entities.DBContext();
             LoadAccounts();
             Adds = new RelayCommand(Add);
-            Accountt = new Entities.Account();
-            db = new Entities.DBContext();
+            //Accountt = new Entities.Account();
+            //db = new Entities.DBContext();
 
             Updates = new RelayCommand(Update);
             Deletes = new RelayCommand(Delete);

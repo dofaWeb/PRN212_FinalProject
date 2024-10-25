@@ -12,7 +12,7 @@
     <Window.DataContext>
         <vm:LoginViewModel></vm:LoginViewModel>
     </Window.DataContext>
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -35,19 +35,24 @@
         <Label Grid.Row="1" Grid.Column="0" Content="Username:" 
            VerticalAlignment="Center" Margin="10"/>
         <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding LoginAVU.Username}"
-             Width="200" Margin="10" TextChanged="TextBox_TextChanged"/>
+             Width="200" Margin="10" />
 
         <!-- Password Label and PasswordBox -->
         <Label Grid.Row="2" Grid.Column="0" Content="Password:" 
            VerticalAlignment="Center" Margin="10"/>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding LoginAVU.Password}"
                  Width="200" Margin="10"/>
-        
+
         <!-- Login Button -->
 
         <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding LoginCommand}"
             Content="Login" Width="100" 
             HorizontalAlignment="Center" 
-            Margin="10"/>
+            Margin="10" Click="Button_Click_1"/>
+        <Button Grid.Row="3" Grid.Column="1" 
+Content="Register" Width="100" 
+HorizontalAlignment="Left" 
+Margin="376,0,0,0" Click="Button_Click" Height="19" VerticalAlignment="Center"/>
+
     </Grid>
 </Window>
