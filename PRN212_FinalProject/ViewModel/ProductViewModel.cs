@@ -147,25 +147,31 @@ namespace PRN212_FinalProject.ViewModel
         }
         private void AddProduct(object parameter)
         {
-            // Create a new Product
             var newProduct = new Entities.Product
             {
                 Id = getNewProductId(),
                 Name = NameInfo,
                 Description = DescriptionInfo,
-                // Assume you set CategoryId and SupplierId based on names
                 CategoryId = db.Categories.FirstOrDefault(c => c.Name == CategoryInfo)?.Id,
                 SupplierId = db.Suppliers.FirstOrDefault(s => s.Name == SupplierInfo)?.Id
             };
 
-            // Add it to the database
             db.Products.Add(newProduct);
             db.SaveChanges();
-            Products.Add(newProduct);
-            OnPropertyChanged(nameof(Products));
-            LoadProducts();
 
+            // Add the new product directly to the ObservableCollection
+            Products.Add(newProduct);
+
+            // Clear input fields after adding
+            IdInfo = string.Empty;
+            NameInfo = string.Empty;
+            DescriptionInfo = string.Empty;
+            CategoryInfo = string.Empty;
+            SupplierInfo = string.Empty;
+
+            OnPropertyChanged(nameof(Products));
         }
+
         private void DeleteProduct(object parameter)
         {
             // Find the product to delete
@@ -220,10 +226,14 @@ namespace PRN212_FinalProject.ViewModel
                         productToUpdate.CategoryId = existingProduct.CategoryId; // Optional: If you want to keep category in the collection
                         productToUpdate.SupplierId = existingProduct.SupplierId; // Optional: If you want to keep supplier in the collection
                     }
+                    // Refresh the ObservableCollection
+                    Products.Remove(SelectItem);  // Temporarily remove the item
+                    Products.Add(existingProduct); // Add the updated item back
                     OnPropertyChanged(nameof(Products));
-                    
+                    LoadProducts();
                 }
             }
+          
         }
 
     }
