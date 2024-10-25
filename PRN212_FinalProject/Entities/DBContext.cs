@@ -32,6 +32,8 @@ public partial class DBContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<ProductConfiguration> ProductConfigurations { get; set; }
+
     public virtual DbSet<ProductItem> ProductItems { get; set; }
 
     public virtual DbSet<RoleName> RoleNames { get; set; }
@@ -256,6 +258,35 @@ public partial class DBContext : DbContext
                 .HasConstraintName("Product_ibfk_2");
         });
 
+        modelBuilder.Entity<ProductConfiguration>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("Product_Configuration");
+
+            entity.HasIndex(e => e.ProductItemId, "product_item_id");
+
+            entity.HasIndex(e => e.VariationOptionId, "variation_option_id");
+
+            entity.Property(e => e.Id)
+                .HasMaxLength(8)
+                .HasColumnName("id");
+            entity.Property(e => e.ProductItemId)
+                .HasMaxLength(8)
+                .HasColumnName("product_item_id");
+            entity.Property(e => e.VariationOptionId)
+                .HasMaxLength(8)
+                .HasColumnName("variation_option_id");
+
+            entity.HasOne(d => d.ProductItem).WithMany(p => p.ProductConfigurations)
+                .HasForeignKey(d => d.ProductItemId)
+                .HasConstraintName("Product_Configuration_ibfk_1");
+
+            entity.HasOne(d => d.VariationOption).WithMany(p => p.ProductConfigurations)
+                .HasForeignKey(d => d.VariationOptionId)
+                .HasConstraintName("Product_Configuration_ibfk_2");
+        });
+
         modelBuilder.Entity<ProductItem>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -280,32 +311,6 @@ public partial class DBContext : DbContext
             entity.HasOne(d => d.Product).WithMany(p => p.ProductItems)
                 .HasForeignKey(d => d.ProductId)
                 .HasConstraintName("Product_Item_ibfk_1");
-
-            entity.HasMany(d => d.VariationOptions).WithMany(p => p.ProductItems)
-                .UsingEntity<Dictionary<string, object>>(
-                    "ProductConfiguration",
-                    r => r.HasOne<VariationOption>().WithMany()
-                        .HasForeignKey("VariationOptionId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("Product_Configuration_ibfk_2"),
-                    l => l.HasOne<ProductItem>().WithMany()
-                        .HasForeignKey("ProductItemId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("Product_Configuration_ibfk_1"),
-                    j =>
-                    {
-                        j.HasKey("ProductItemId", "VariationOptionId")
-                            .HasName("PRIMARY")
-                            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
-                        j.ToTable("Product_Configuration");
-                        j.HasIndex(new[] { "VariationOptionId" }, "variation_option_id");
-                        j.IndexerProperty<string>("ProductItemId")
-                            .HasMaxLength(8)
-                            .HasColumnName("product_item_id");
-                        j.IndexerProperty<string>("VariationOptionId")
-                            .HasMaxLength(8)
-                            .HasColumnName("variation_option_id");
-                    });
         });
 
         modelBuilder.Entity<RoleName>(entity =>
