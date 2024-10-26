@@ -9,9 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450"
       Title="ProductItemPage" Width="870">
-    <Page.DataContext>
-        <VM:ProductItemViewModel></VM:ProductItemViewModel>
-    </Page.DataContext>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" />
@@ -25,17 +23,21 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <!-- DataGrid to display product details -->
-        <DataGrid Name="ProductGrid" Grid.Row="0" ItemsSource="{Binding ProductItems, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.ColumnSpan="6" AutoGenerateColumns="False" HeadersVisibility="Column"
-                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,10">
+        <!-- DataGrid to display product item details -->
+        <DataGrid Name="ProductGrid" Grid.Row="0" 
+              ItemsSource="{Binding ProductItems, UpdateSourceTrigger=PropertyChanged}" 
+              SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+              AutoGenerateColumns="False" Grid.Column="0" Grid.ColumnSpan="6" 
+              HeadersVisibility="Column" HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch" Margin="0,0,0,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="100" />
                 <DataGridTextColumn Header="Ram" Binding="{Binding Ram}" Width="80" />
@@ -44,34 +46,42 @@
                 <DataGridTextColumn Header="Import Price" Binding="{Binding ImportPrice}" Width="100" />
                 <DataGridTextColumn Header="Selling Price" Binding="{Binding SellingPrice}" Width="100" />
                 <DataGridTextColumn Header="Discount" Binding="{Binding Discount}" Width="80" />
-                <DataGridTextColumn Header="DiscountedPrice" Binding="{Binding PriceAfterDiscount}" Width="100" />
+                <DataGridTextColumn Header="Discounted Price" Binding="{Binding PriceAfterDiscount}" Width="100" />
                 <DataGridTextColumn Header="Profit" Binding="{Binding Profit}" Width="80" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- ListView below DataGrid -->
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="ID:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Storage:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Ram:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Quantity:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Import Price:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="6" Grid.Column="0" Text="Selling Price:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="7" Grid.Column="0" Text="Discount:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
+        <!-- Labels for product item details -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="ID:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Storage:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Ram:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Quantity:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Import Price:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Selling Price:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Discount:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
 
-        <!-- TextBox Bindings for product details -->
-        <TextBox Name="ProductId" Text="{Binding IdInfo, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False" />
-        <TextBox Name="ProductName" Text="{Binding NameInfo, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Description" Text="{Binding DescriptionInfo, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Category" Text="{Binding CategoryInfo, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Supplier" Text="{Binding SupplierInfo, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="SellingPrice" Text="{Binding SupplierInfo, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Discount" Text="{Binding SupplierInfo, Mode=TwoWay}" Grid.Row="7" Grid.Column="1" Margin="10,1,10,1" />
+        <!-- TextBoxes for product item details -->
+        <TextBox Text="{Binding SelectedItem.Id, Mode=OneWay}" 
+             Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False" />
+        <TextBox Text="{Binding SelectedItem.Storage, Mode=TwoWay}" 
+             Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Text="{Binding SelectedItem.Ram, Mode=TwoWay}" 
+             Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Text="{Binding SelectedItem.Quantity, Mode=TwoWay}" 
+             Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Text="{Binding SelectedItem.ImportPrice, Mode=TwoWay}" 
+             Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Text="{Binding SelectedItem.SellingPrice, Mode=TwoWay}" 
+             Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Text="{Binding SelectedItem.Discount, Mode=TwoWay}" 
+             Grid.Row="7" Grid.Column="1" Margin="10,1,10,1" />
 
-        <!-- Buttons for CRUD operations -->
-
-        <Button Grid.Column="2" Grid.Row="2" Name="AddButton" Content="Add" Width="100" Margin="5"  />
-        <Button Grid.Column="3" Grid.Row="2" Name="EditButton" Content="Edit" Width="100" Margin="5" />
-        <Button Grid.Column="4" Grid.Row="2" Name="DeleteButton" Content="Delete" Width="100" Margin="5" />
-
+        <!-- CRUD Buttons -->
+        <Button Grid.Column="2" Grid.Row="2" Content="Add" Width="100" Margin="5"
+            Command="{Binding AddProductItemCommand}" />
+        <Button Grid.Column="3" Grid.Row="2" Content="Edit" Width="100" Margin="5"
+            Command="{Binding EditProductItemCommand}" />
+        <Button Grid.Column="4" Grid.Row="2" Content="Delete" Width="100" Margin="5"
+            Command="{Binding DeleteProductItemCommand}" />
     </Grid>
 </Page>
