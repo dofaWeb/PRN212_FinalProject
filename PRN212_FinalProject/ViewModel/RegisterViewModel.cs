@@ -16,6 +16,7 @@ namespace PRN212_FinalProject.ViewModel
         public Entities.Account Regis { get; set; }
 
         public ICommand RegisterCommand { get; set; }
+        public Action CloseWindowAction { get; set; }
 
         public RegisterViewModel()
         {
@@ -73,6 +74,27 @@ namespace PRN212_FinalProject.ViewModel
                 MessageBox.Show("Username đã tồn tại. Vui lòng chọn tên đăng nhập khác.");
                 return;
             }
+            // Kiểm tra độ dài của mật khẩu
+            if (Password.Length <= 6)
+            {
+                MessageBox.Show("Password phải có ít nhất 7 ký tự.");
+                return;
+            }
+
+            // Kiểm tra độ dài của số điện thoại
+            if (Phone.Length < 10)
+            {
+                MessageBox.Show("Số điện thoại phải có ít nhất 10 ký tự.");
+                return;
+            }
+
+            // Kiểm tra định dạng email
+            if (!IsValidEmail(Email))
+            {
+                MessageBox.Show("Email không hợp lệ.");
+                return;
+            }
+            
 
             Entities.Account account = new Entities.Account
             {
@@ -94,6 +116,8 @@ namespace PRN212_FinalProject.ViewModel
             {
                 db.SaveChanges();
                 MessageBox.Show("Đăng kí thành công");
+                // Nếu đăng ký thành công, gọi CloseWindowAction
+                CloseWindowAction?.Invoke();
             }
             catch (Exception ex)
             {
@@ -102,7 +126,18 @@ namespace PRN212_FinalProject.ViewModel
 
         }
 
-
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 
 }

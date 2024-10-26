@@ -50,7 +50,7 @@
         <TextBox x:Name="AddressTextBox" Grid.Row="5" Grid.Column="1" Width="200" Height="25" Margin="5" Text="{Binding Regis.Address}"/>
 
         <!-- Register Button -->
-        <Button Content="Register" Grid.Row="6" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Command="{Binding RegisterCommand}" Click="Button_Click"/>
+        <Button Content="Register" Grid.Row="6" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Command="{Binding RegisterCommand}" />
     </Grid>
 
 </Window>
