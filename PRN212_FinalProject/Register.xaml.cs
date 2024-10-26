@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRN212_FinalProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,14 +23,18 @@ namespace PRN212_FinalProject
         public Register()
         {
             InitializeComponent();
+            var viewModel = new RegisterViewModel();
+            this.DataContext = viewModel;
+
+            // Đặt CloseWindowAction để mở LoginWindow và đóng RegisterWindow khi đăng ký thành công
+            viewModel.CloseWindowAction = () =>
+            {
+                Login loginWindow = new Login();
+                loginWindow.Show();
+                this.Close();
+            };
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Login loginWindow = new Login();
-            loginWindow.Show(); // Show the Login
-            this.Close(); // Optionally close the Login window
-
-        }
+       
     }
 }
