@@ -3,6 +3,7 @@ using PRN212_FinalProject.Helper;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using System.Windows.Input;
 
 namespace PRN212_FinalProject.ViewModel
 {
-    internal class ProductItemViewModel : BaseViewModel
+    public class ProductItemViewModel : BaseViewModel, INotifyPropertyChanged
     {
 
         private DBContext db;
@@ -20,7 +21,7 @@ namespace PRN212_FinalProject.ViewModel
         public ICommand DeleteProductItemCommand { get; }
         public ObservableCollection<Entities.ProductItem> ProductItems { get; set; }
 
-        public ProductItemViewModel()
+        public ProductItemViewModel(string ProductId)
         {
             db = new DBContext();
             AddProductItemCommand = new RelayCommand(AddProductItem);

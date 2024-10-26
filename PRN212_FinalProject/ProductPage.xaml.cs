@@ -31,9 +31,15 @@ namespace PRN212_FinalProject
         {
             // Get the selected product from the button's DataContext (which is bound to the current row's product)
             var product = (Product)((Button)sender).DataContext;
+            string productId = product.Id; // Assuming Id is already a string
+            var ProItemViewModel = new ProductItemViewModel(productId);
+
+            var proItemPage = new ProductItemPage();
+            proItemPage.PassingValue(ProItemViewModel);
 
             // Navigate to the ProductDetailPage, passing the selected product
-            NavigationService.Navigate(new ProductItemPage());
+            var adminWindow = (Admin)Window.GetWindow(this); // Get the parent window
+            adminWindow.MainPage.Navigate(proItemPage); // Navigate via the frame
         }
     }
 }

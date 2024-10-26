@@ -30,7 +30,7 @@ namespace PRN212_FinalProject
         }
         private void Product_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Content = new ProductPage();
+            MainPage.Navigate(new ProductPage());
         }
     }
 }

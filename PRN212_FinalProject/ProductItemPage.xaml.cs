@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRN212_FinalProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace PRN212_FinalProject
         public ProductItemPage()
         {
             InitializeComponent();
+        }
+
+        public void PassingValue(ProductItemViewModel ProItemViewModel)
+        {
+            this.DataContext = ProItemViewModel;
+
         }
     }
 }
