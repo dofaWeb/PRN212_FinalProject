@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace PRN212_FinalProject.ViewModel
 {
-    internal class ProductItemViewModel : BaseViewModel
+    public class ProductItemViewModel : BaseViewModel
     {
 
         private DBContext db;
@@ -20,14 +20,14 @@ namespace PRN212_FinalProject.ViewModel
         public ICommand DeleteProductItemCommand { get; }
         public ObservableCollection<Entities.ProductItem> ProductItems { get; set; }
 
-        public ProductItemViewModel()
+        public ProductItemViewModel(string ProductId)
         {
             db = new DBContext();
             AddProductItemCommand = new RelayCommand(AddProductItem);
             EditProductItemCommand = new RelayCommand(EditProductItem);
             DeleteProductItemCommand = new RelayCommand(DeleteProductItem);
 
-            LoadProductItem("P0000001");
+            LoadProductItem(ProductId);
         }
 
         public string GetProductVariationOption(string productItemId, string option)
