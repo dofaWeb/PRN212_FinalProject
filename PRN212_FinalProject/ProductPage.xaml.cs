@@ -32,8 +32,14 @@ namespace PRN212_FinalProject
             // Get the selected product from the button's DataContext (which is bound to the current row's product)
             var product = (Product)((Button)sender).DataContext;
 
+            var productId = product.Id;
+
+            var ProItemViewModel = new ProductItemViewModel(productId);
+
+            var ProductItemPage = new ProductItemPage(ProItemViewModel);
+
             // Navigate to the ProductDetailPage, passing the selected product
-            NavigationService.Navigate(new ProductItemPage());
+            NavigationService.Navigate(ProductItemPage);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRN212_FinalProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace PRN212_FinalProject
     /// </summary>
     public partial class ProductItemPage : Page
     {
-        public ProductItemPage()
+        public ProductItemPage(ProductItemViewModel viewModel)
         {
             InitializeComponent();
+            this.DataContext = viewModel;
         }
     }
 }
