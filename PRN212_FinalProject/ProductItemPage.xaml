@@ -66,22 +66,25 @@
 
         <!-- Storage ComboBox -->
         <ComboBox Grid.Row="2" Grid.Column="1" Margin="10,1,10,1"
-                  ItemsSource="{Binding StorageOptions}" 
-                  SelectedItem="{Binding StorageInfo, Mode=TwoWay}">
+          ItemsSource="{Binding StorageOptions}" 
+          SelectedValue="{Binding StorageInfo, Mode=TwoWay}" 
+          SelectedValuePath="Content">
             <ComboBoxItem Content="128GB" />
             <ComboBoxItem Content="256GB" />
             <ComboBoxItem Content="512GB" />
-            <ComboBoxItem Content="1TB" />
+            <ComboBoxItem Content="1T" />
         </ComboBox>
 
         <!-- Ram ComboBox -->
         <ComboBox Grid.Row="3" Grid.Column="1" Margin="10,1,10,1"
                   ItemsSource="{Binding RamOptions}" 
-                  SelectedItem="{Binding RamInfo, Mode=TwoWay}">
+                  SelectedValue="{Binding RamInfo, Mode=TwoWay}"
+                  SelectedValuePath="Content">
             <ComboBoxItem Content="4GB" />
             <ComboBoxItem Content="8GB" />
             <ComboBoxItem Content="12GB" />
             <ComboBoxItem Content="16GB" />
+            <ComboBoxItem Content="32GB" />
         </ComboBox>
 
         <TextBox Text="{Binding QuantityInfo, Mode=TwoWay}" 

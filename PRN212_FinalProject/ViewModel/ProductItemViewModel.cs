@@ -157,6 +157,84 @@ namespace PRN212_FinalProject.ViewModel
             return priceAfterDiscount - importPrice;
         }
 
+        public string getNewProducConfigurationID()
+        {
+            string lastId = db.ProductConfigurations
+                .OrderByDescending(a => a.Id)
+                .Select(a => a.Id)
+                .FirstOrDefault();
+
+            if (lastId == null)
+            {
+                return "Pc000001";
+            }
+
+            string prefix = lastId.Substring(0, 2);
+            int number = int.Parse(lastId.Substring(2));
+
+            int newNumber = number + 1;
+            string newId = $"{prefix}{newNumber:D6}";
+
+            return newId;
+        }
+
+        public Boolean checkExistVariation(string productId, string variationOpId1, string variationOpId2)
+        {
+            var v1 = (from p in db.Products
+                      join pi in db.ProductItems on p.Id equals pi.ProductId
+                      join pc in db.ProductConfigurations on pi.Id equals pc.ProductItemId
+                      where p.Id == productId && pc.VariationOptionId == variationOpId1
+                      select p).Any();
+            var v2 = (from p in db.Products
+                      join pi in db.ProductItems on p.Id equals pi.ProductId
+                      join pc in db.ProductConfigurations on pi.Id equals pc.ProductItemId
+                      where p.Id == productId && pc.VariationOptionId == variationOpId2
+                      select p).Any();
+            if (v1 && v2)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public string GetVariationId(string name)
+        {
+            var id = db.Variations.Where(p => p.Name == name).Select(p => p.Id).FirstOrDefault();
+            return id;
+        }
+
+        public string GetVariationOptionId(string value, string varationId)
+        {
+            var id = db.VariationOptions.Where(p => p.Value == value && p.VariationId == varationId).Select(p => p.Id).FirstOrDefault();
+            return id;
+        }
+        public void AddProductConfiguration(ProductItem model)
+        {
+            var variation_option_id1 = GetVariationOptionId(model.Ram, GetVariationId("Ram"));
+            var variation_option_id2 = GetVariationOptionId(model.Storage, GetVariationId("Storage"));
+
+            var id = getNewProducConfigurationID();
+
+            db.ProductConfigurations.Add(new Entities.ProductConfiguration
+            {
+                Id = id,
+                ProductItemId = model.Id,
+                VariationOptionId = variation_option_id1,
+            });
+            db.SaveChanges();
+
+            id = getNewProducConfigurationID();
+            db.ProductConfigurations.Add(new Entities.ProductConfiguration
+            {
+                Id = id,
+                ProductItemId = model.Id,
+                VariationOptionId = variation_option_id2,
+            });
+            db.SaveChanges();
+
+        }
+
         public void AddProductItem(object parameter)
         {
             var newProductItem = new Entities.ProductItem
@@ -165,17 +243,26 @@ namespace PRN212_FinalProject.ViewModel
                 Quantity = int.Parse(QuantityInfo),
                 ImportPrice = int.Parse(ImportPriceInfo),
                 SellingPrice = int.Parse(SellingPriceInfo),
-                Discount = int.Parse(DiscountInfo),
+                Discount = decimal.Parse(DiscountInfo),
                 ProductId = ProductId
             };
-
             string Ram = RamInfo;
             string storage = StorageInfo;
+            var variation_option_id1 = GetVariationOptionId(Ram, GetVariationId("Ram"));
+            var variation_option_id2 = GetVariationOptionId(storage, GetVariationId("Storage"));
+            if (!checkExistVariation(ProductId, variation_option_id1, variation_option_id2))
+            {
+                db.ProductItems.Add(newProductItem);
+                newProductItem.Storage = storage;
+                newProductItem.Ram = Ram;
+                db.SaveChanges();
 
-            //db.ProductItems.Add(newProductItem);
-            //db.SaveChanges();
+                AddProductConfiguration(newProductItem);
 
-            //ProductItems.Add(newProductItem);
+                newProductItem.PriceAfterDiscount = CalculatePriceAfterDiscount(newProductItem.SellingPrice, newProductItem.Discount / 100);
+                newProductItem.Profit = CalculateProfit(newProductItem.PriceAfterDiscount, newProductItem.ImportPrice);
+                ProductItems.Add(newProductItem);
+            }
             ClearFields();
         }
 
@@ -210,7 +297,7 @@ namespace PRN212_FinalProject.ViewModel
                         db.ProductConfigurations.Remove(p);
                     }
                     db.ProductItems.Remove(existingItem);
-                    db.SaveChanges() ;
+                    db.SaveChanges();
                     ProductItems.Remove(SelectedItem);
                 }
             }
