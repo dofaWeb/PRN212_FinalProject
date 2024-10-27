@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PRN212_FinalProject.ViewModel
@@ -20,13 +21,15 @@ namespace PRN212_FinalProject.ViewModel
 
         public ObservableCollection<Entities.ProductItem> ProductItems { get; set; }
 
+        private string ProductId = "";
+
         public ProductItemViewModel(string productId)
         {
             db = new DBContext();
             AddProductItemCommand = new RelayCommand(AddProductItem);
             EditProductItemCommand = new RelayCommand(EditProductItem);
             DeleteProductItemCommand = new RelayCommand(DeleteProductItem);
-
+            ProductId = productId;
             LoadProductItem(productId);
         }
 
@@ -163,13 +166,16 @@ namespace PRN212_FinalProject.ViewModel
                 ImportPrice = int.Parse(ImportPriceInfo),
                 SellingPrice = int.Parse(SellingPriceInfo),
                 Discount = int.Parse(DiscountInfo),
-                ProductId = IdInfo
+                ProductId = ProductId
             };
 
-            db.ProductItems.Add(newProductItem);
-            db.SaveChanges();
+            string Ram = RamInfo;
+            string storage = StorageInfo;
 
-            ProductItems.Add(newProductItem);
+            //db.ProductItems.Add(newProductItem);
+            //db.SaveChanges();
+
+            //ProductItems.Add(newProductItem);
             ClearFields();
         }
 
@@ -195,9 +201,18 @@ namespace PRN212_FinalProject.ViewModel
         {
             if (SelectedItem != null)
             {
-                db.ProductItems.Remove(SelectedItem);
-                db.SaveChanges();
-                ProductItems.Remove(SelectedItem);
+                var pc = db.ProductConfigurations.Where(p => p.ProductItemId == SelectedItem.Id);
+                var existingItem = db.ProductItems.FirstOrDefault(p => p.Id == SelectedItem.Id);
+                if (pc != null && existingItem != null)
+                {
+                    foreach (var p in pc)
+                    {
+                        db.ProductConfigurations.Remove(p);
+                    }
+                    db.ProductItems.Remove(existingItem);
+                    db.SaveChanges() ;
+                    ProductItems.Remove(SelectedItem);
+                }
             }
         }
 
