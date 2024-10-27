@@ -60,20 +60,37 @@
         <TextBlock Grid.Row="6" Grid.Column="0" Text="Selling Price:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
         <TextBlock Grid.Row="7" Grid.Column="0" Text="Discount:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
 
-        <!-- TextBoxes for product item details -->
+        <!-- TextBoxes and ComboBoxes for product item details -->
         <TextBox Text="{Binding SelectedItem.Id, Mode=OneWay}" 
              Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False" />
-        <TextBox Text="{Binding SelectedItem.Storage, Mode=TwoWay}" 
-             Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Text="{Binding SelectedItem.Ram, Mode=TwoWay}" 
-             Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Text="{Binding SelectedItem.Quantity, Mode=TwoWay}" 
+
+        <!-- Storage ComboBox -->
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="10,1,10,1"
+                  ItemsSource="{Binding StorageOptions}" 
+                  SelectedItem="{Binding StorageInfo, Mode=TwoWay}">
+            <ComboBoxItem Content="128GB" />
+            <ComboBoxItem Content="256GB" />
+            <ComboBoxItem Content="512GB" />
+            <ComboBoxItem Content="1TB" />
+        </ComboBox>
+
+        <!-- Ram ComboBox -->
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="10,1,10,1"
+                  ItemsSource="{Binding RamOptions}" 
+                  SelectedItem="{Binding RamInfo, Mode=TwoWay}">
+            <ComboBoxItem Content="4GB" />
+            <ComboBoxItem Content="8GB" />
+            <ComboBoxItem Content="12GB" />
+            <ComboBoxItem Content="16GB" />
+        </ComboBox>
+
+        <TextBox Text="{Binding QuantityInfo, Mode=TwoWay}" 
              Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Text="{Binding SelectedItem.ImportPrice, Mode=TwoWay}" 
+        <TextBox Text="{Binding ImportPriceInfo, Mode=TwoWay}" 
              Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Text="{Binding SelectedItem.SellingPrice, Mode=TwoWay}" 
+        <TextBox Text="{Binding SellingPriceInfo, Mode=TwoWay}" 
              Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Text="{Binding SelectedItem.Discount, Mode=TwoWay}" 
+        <TextBox Text="{Binding DiscountInfo, Mode=TwoWay}" 
              Grid.Row="7" Grid.Column="1" Margin="10,1,10,1" />
 
         <!-- CRUD Buttons -->
