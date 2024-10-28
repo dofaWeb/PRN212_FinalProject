@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Hp.jpg" />
+    <None Remove="Images\HPLaptop.jpg" />
     <None Remove="Images\Iphone.jpg" />
     <None Remove="Images\Lenovo.jpg" />
   </ItemGroup>
@@ -31,6 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Hp.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\HPLaptop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Iphone.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
