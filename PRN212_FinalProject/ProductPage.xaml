@@ -8,11 +8,15 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       xmlns:VM="clr-namespace:PRN212_FinalProject.ViewModel"
+       xmlns:HP="clr-namespace:PRN212_FinalProject.Helper"
       Title="ProductPage">
 
     <Page.DataContext>
         <VM:ProductViewModel></VM:ProductViewModel>
     </Page.DataContext>
+    <Page.Resources>
+        <HP:ImagePathConverter x:Key="ImagePathConverter" />
+    </Page.Resources>
 
     <Grid Margin="10">
 
@@ -39,17 +43,19 @@
 
         <!-- Product details fields in rows -->
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Product ID:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Product Name:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Description:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Category:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Supplier:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Picture:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Product Name:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Description:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Category:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Supplier:" FontSize="15" HorizontalAlignment="Right" Margin="3,3,3,3" />
 
         <!-- TextBox Bindings for product details -->
         <TextBox Name="ProductId" Text="{Binding IdInfo, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False" />
-        <TextBox Name="ProductName" Text="{Binding NameInfo, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Description" Text="{Binding DescriptionInfo, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Category" Text="{Binding CategoryInfo, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Supplier" Text="{Binding SupplierInfo, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Name="Picture" Text="{Binding PictureInfo, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Name="ProductName" Text="{Binding NameInfo, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Name="Description" Text="{Binding DescriptionInfo, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Name="Category" Text="{Binding CategoryInfo, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
+        <TextBox Name="Supplier" Text="{Binding SupplierInfo, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" />
 
         <!-- Action Buttons -->
         <Button Name="AddProductBtn" Content="Add" Command="{Binding AddProductCommand}" Grid.Row="1" Grid.Column="2" />
@@ -57,14 +63,26 @@
         <Button Name="DeleteProductBtn" Content="Delete" Command="{Binding DeleteProductCommand}" Grid.Row="1" Grid.Column="4" />
 
         <!-- DataGrid for listing products with option buttons -->
-        <ListView Name="ProductListView" ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5">
+        <ListView Name="ProductListView" ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}" 
+          SelectedItem="{Binding SelectItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+          Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding Id}" Width="150" />
+                    <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding Id}" Width="70" />
+
+                    <GridViewColumn Header="Image" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Picture, Converter={StaticResource ImagePathConverter}}" Width="50" Height="50" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
                     <GridViewColumn Header="Product Name" DisplayMemberBinding="{Binding Name}" Width="150" />
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="150" />
-                    <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category.Name}" Width="150" />
+                    <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category.Name}" Width="100" />
                     <GridViewColumn Header="Supplier" DisplayMemberBinding="{Binding Supplier.Name}" Width="150" />
+
                     <!-- Option Button column for Edit/Delete -->
                     <GridViewColumn Header="Option" Width="100">
                         <GridViewColumn.CellTemplate>
@@ -76,5 +94,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
     </Grid>
 </Page>
