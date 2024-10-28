@@ -855,3 +855,10 @@ C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAc
 C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.g.cs
 C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.baml
 C:\Users\PHUC\Desktop\Prn212\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\dell_xps_13.jpg
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\galaxy_s21.jpg
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\hp-240-g10-i5-9h2e4pt-2-1-750x500.jpg
