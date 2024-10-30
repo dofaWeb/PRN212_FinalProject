@@ -12,7 +12,8 @@ namespace PRN212_FinalProject.ViewModel
     {
         public ObservableCollection<Product> Products { get; set; }
         DBContext dbContext;
-        public UserViewModel() {
+        public UserViewModel()
+        {
             LoadProductsData();
         }
 
@@ -26,6 +27,9 @@ namespace PRN212_FinalProject.ViewModel
                 foreach (var product in products)
                 {
                     product.Picture = $"pack://application:,,,/Images/{product.Picture}";
+                    ////Get Price
+                    //var proItem = dbContext.ProductItems.Where(p => p.ProductId == product.Id).Order ToList();
+                    //product.ProductItems = new ObservableCollection<ProductItem>(proItem);
                 }
 
                 Products = new ObservableCollection<Product>(products);
