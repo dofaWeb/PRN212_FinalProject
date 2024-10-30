@@ -43,6 +43,7 @@ namespace PRN212_FinalProject.ViewModel
                 _selectedItem = value;
                 if (_selectedItem != null)
                 {
+                    IsAddingNewProduct = false;
                     // Update input fields with the selected item's properties
                     IdInfo = _selectedItem.Id;
                     QuantityInfo = _selectedItem.Quantity.ToString();
@@ -106,6 +107,13 @@ namespace PRN212_FinalProject.ViewModel
             set { _storageInfo = value; OnPropertyChanged(nameof(StorageInfo)); }
         }
 
+        private bool _isAddingNewProduct;
+        public bool IsAddingNewProduct
+        {
+            get => _isAddingNewProduct;
+            set { _isAddingNewProduct = value; OnPropertyChanged(nameof(IsAddingNewProduct)); }
+        }
+
         public string GetProductVariationOption(string productItemId, string option)
         {
             var varianceValue = (from pc in db.ProductConfigurations
@@ -143,6 +151,7 @@ namespace PRN212_FinalProject.ViewModel
             var query = GetProductItem(productId);
             ProductItems = new ObservableCollection<Entities.ProductItem>(query);
             OnPropertyChanged(nameof(ProductItems));
+            IsAddingNewProduct = true;
         }
 
         public static int CalculatePriceAfterDiscount(int? sellingPrice, decimal? discount)
@@ -237,13 +246,20 @@ namespace PRN212_FinalProject.ViewModel
 
         public void AddProductItem(object parameter)
         {
+            IsAddingNewProduct = true;
+            if(QuantityInfo == null || ImportPriceInfo == null || SellingPriceInfo == null)
+            {
+                return;
+            }
+
+            DiscountInfo = (DiscountInfo == null) ? "0" : DiscountInfo;
             var newProductItem = new Entities.ProductItem
             {
                 Id = getNewProductId(),
                 Quantity = int.Parse(QuantityInfo),
                 ImportPrice = int.Parse(ImportPriceInfo),
                 SellingPrice = int.Parse(SellingPriceInfo),
-                Discount = decimal.Parse(DiscountInfo),
+                Discount = (decimal.Parse(DiscountInfo)),
                 ProductId = ProductId
             };
             string Ram = RamInfo;
@@ -280,6 +296,7 @@ namespace PRN212_FinalProject.ViewModel
 
                     db.SaveChanges();
                     LoadProductItem(existingItem.ProductId);
+                    ClearFields();
                 }
             }
         }
@@ -299,6 +316,7 @@ namespace PRN212_FinalProject.ViewModel
                     db.ProductItems.Remove(existingItem);
                     db.SaveChanges();
                     ProductItems.Remove(SelectedItem);
+                    ClearFields();
                 }
             }
         }

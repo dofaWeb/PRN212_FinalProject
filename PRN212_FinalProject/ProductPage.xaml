@@ -54,8 +54,21 @@
         <TextBox Name="Picture" Text="{Binding PictureInfo, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
         <TextBox Name="ProductName" Text="{Binding NameInfo, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
         <TextBox Name="Description" Text="{Binding DescriptionInfo, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Category" Text="{Binding CategoryInfo, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="Supplier" Text="{Binding SupplierInfo, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" />
+        <!-- ComboBox for Category -->
+        <ComboBox Name="CategoryComboBox" 
+          ItemsSource="{Binding CategoryList}" 
+          SelectedItem="{Binding CategoryInfo, Mode=TwoWay}"
+          DisplayMemberPath="Name" 
+          SelectedValuePath="Id"
+          Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
+
+        <!-- ComboBox for Supplier -->
+        <ComboBox Name="SupplierComboBox" 
+          ItemsSource="{Binding SupplierList}" 
+          SelectedItem="{Binding SupplierInfo, Mode=TwoWay}"
+          DisplayMemberPath="Name" 
+          SelectedValuePath="Id"
+          Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" />
 
         <!-- Action Buttons -->
         <Button Name="AddProductBtn" Content="Add" Command="{Binding AddProductCommand}" Grid.Row="1" Grid.Column="2" />
