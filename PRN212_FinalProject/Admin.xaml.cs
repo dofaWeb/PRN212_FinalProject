@@ -32,5 +32,10 @@ namespace PRN212_FinalProject
         {
             MainPage.Content = new ProductPage();
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainPage.Content = new ListAcc();
+        }
     }
 }

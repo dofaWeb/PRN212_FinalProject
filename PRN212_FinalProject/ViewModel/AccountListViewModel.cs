@@ -75,75 +75,9 @@ namespace PRN212_FinalProject.ViewModel
 
             // Chuyển đổi sang ObservableCollection để sử dụng cho giao diện
             Accounts = new ObservableCollection<Entities.Account>(accountList);
+            OnPropertyChanged(nameof(Accounts));
         }
 
-
-        public void Update(object parameter)
-        {
-            if (select != null) // Kiểm tra nếu có tài khoản được chọn
-            {
-                // Cập nhật thông tin từ view model vào đối tượng 'select' (Account đã chọn)
-                select.Username = Username;
-                select.Phone = Phone;
-                select.Address = Adress;
-                select.Email = Email;
-                select.Role.Name = Role; // Cập nhật Role nếu cần thiết
-                select.State.Name = State; // Cập nhật State nếu cần thiết
-
-                // Cập nhật đối tượng 'select' trong DB
-                db.Accounts.Update(select);
-                db.SaveChanges(); // Lưu thay đổi vào DB
-
-                // Cập nhật lại danh sách khách hàng hiển thị (ObservableCollection)
-                int index = Accounts.IndexOf(select);
-                if (index >= 0)
-                {
-                    Accounts[index] = select; // Cập nhật danh sách hiển thị
-
-                }
-            }
-        }
-
-
-        public void Delete(object parameter)
-        {
-            if (select != null) // Kiểm tra tài khoản đã chọn
-            {
-                var accountToDelete = db.Accounts.Find(select.Id);
-
-                if (accountToDelete != null)
-                {
-                    db.Accounts.Remove(accountToDelete);  // Xóa tài khoản khỏi cơ sở dữ liệu
-                    db.SaveChanges();  // Lưu thay đổi
-
-                    Accounts.Remove(select);  // Xóa tài khoản khỏi ObservableCollection để cập nhật giao diện
-                    select = null; // Đặt lại chọn để tránh xóa tài khoản cũ
-                }
-            }
-        }
-
-
-        private Entities.Account _select;
-        public Entities.Account select
-        {
-            get { return _select; }
-            set
-            {
-                _select = value;
-                OnPropertyChanged(nameof(select));
-                if (_select != null)
-                {
-                    ID = _select.Id;
-                    Username = _select.Username;
-                    Phone = _select.Phone;
-                    Adress = _select.Address;
-                    Email = _select.Email;
-                    Role = _select.Role.Name;
-                    State = _select.State.Name;
-                }
-            }
-
-        }
         public void Add(object parameter)
         {
             // Kiểm tra nếu username đã tồn tại trong cơ sở dữ liệu
@@ -194,6 +128,69 @@ namespace PRN212_FinalProject.ViewModel
             }
 
         }
+        public void Update(object parameter)
+        {
+            if (select != null) // Kiểm tra nếu có tài khoản được chọn
+            {
+                // Cập nhật thông tin từ view model vào đối tượng 'select' (Account đã chọn)
+                select.Username = Username;
+                select.Phone = Phone;
+                select.Address = Adress;
+                select.Email = Email;
+                select.Role.Name = Role; // Cập nhật Role nếu cần thiết
+                select.State.Name = State; // Cập nhật State nếu cần thiết
+
+                // Cập nhật đối tượng 'select' trong DB
+                db.Accounts.Update(select);
+                db.SaveChanges(); // Lưu thay đổi vào DB
+
+                Accounts.Clear();
+                
+                LoadAccounts();
+            }
+        }
+
+
+        public void Delete(object parameter)
+        {
+            if (select != null) // Kiểm tra tài khoản đã chọn
+            {
+                var accountToDelete = db.Accounts.Find(select.Id);
+
+                if (accountToDelete != null)
+                {
+                    db.Accounts.Remove(accountToDelete);  // Xóa tài khoản khỏi cơ sở dữ liệu
+                    db.SaveChanges();  // Lưu thay đổi
+
+                    Accounts.Remove(select);  // Xóa tài khoản khỏi ObservableCollection để cập nhật giao diện
+                    select = null; // Đặt lại chọn để tránh xóa tài khoản cũ
+                }
+            }
+        }
+
+
+        private Entities.Account _select;
+        public Entities.Account select
+        {
+            get { return _select; }
+            set
+            {
+                _select = value;
+                OnPropertyChanged(nameof(select));
+                if (_select != null)
+                {
+                    ID = _select.Id;
+                    Username = _select.Username;
+                    Phone = _select.Phone;
+                    Adress = _select.Address;
+                    Email = _select.Email;
+                    Role = _select.Role.Name;
+                    State = _select.State.Name;
+                }
+            }
+
+        }
+       
 
 
         public string GetNewId()
