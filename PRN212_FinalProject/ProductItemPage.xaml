@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition Width="0.5*" />
@@ -68,7 +68,8 @@
         <ComboBox Grid.Row="2" Grid.Column="1" Margin="10,1,10,1"
           ItemsSource="{Binding StorageOptions}" 
           SelectedValue="{Binding StorageInfo, Mode=TwoWay}" 
-          SelectedValuePath="Content">
+          SelectedValuePath="Content"
+          IsEnabled="{Binding IsAddingNewProduct}">
             <ComboBoxItem Content="128GB" />
             <ComboBoxItem Content="256GB" />
             <ComboBoxItem Content="512GB" />
@@ -77,9 +78,10 @@
 
         <!-- Ram ComboBox -->
         <ComboBox Grid.Row="3" Grid.Column="1" Margin="10,1,10,1"
-                  ItemsSource="{Binding RamOptions}" 
-                  SelectedValue="{Binding RamInfo, Mode=TwoWay}"
-                  SelectedValuePath="Content">
+          ItemsSource="{Binding RamOptions}" 
+          SelectedValue="{Binding RamInfo, Mode=TwoWay}"
+          SelectedValuePath="Content"
+          IsEnabled="{Binding IsAddingNewProduct}">
             <ComboBoxItem Content="4GB" />
             <ComboBoxItem Content="8GB" />
             <ComboBoxItem Content="12GB" />

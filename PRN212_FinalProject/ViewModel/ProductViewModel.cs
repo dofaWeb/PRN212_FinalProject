@@ -19,6 +19,8 @@ namespace PRN212_FinalProject.ViewModel
         public ICommand DeleteProductCommand { get; }
 
         public ObservableCollection<Entities.Product> Products { get; set; }
+        public ObservableCollection<Category> CategoryList { get; set; }
+        public ObservableCollection<Supplier> SupplierList { get; set; }
         private Entities.DBContext db;
 
         public ProductViewModel()
@@ -28,6 +30,20 @@ namespace PRN212_FinalProject.ViewModel
             DeleteProductCommand = new RelayCommand(DeleteProduct);
             EditProductCommand = new RelayCommand(UpdateProduct);
             LoadProducts();
+            LoadCategory();
+            LoadSupplier();
+        }
+
+        public void LoadCategory()
+        {
+            var query = db.Categories.ToList();
+            CategoryList = new ObservableCollection<Category>(query);
+        }
+
+        public void LoadSupplier()
+        {
+            var query = db.Suppliers.ToList();
+            SupplierList = new ObservableCollection<Supplier>(query);
         }
 
         private string _IdInfo;
@@ -51,18 +67,21 @@ namespace PRN212_FinalProject.ViewModel
             set { _DescriptionInfo = value; OnPropertyChanged(nameof(DescriptionInfo)); }
         }
 
-        private string _categoryInfo;
-        public string CategoryInfo
+        private Category _categoryInfo;
+        public Category CategoryInfo
         {
             get { return _categoryInfo; }
             set { _categoryInfo = value; OnPropertyChanged(nameof(CategoryInfo)); }
         }
 
-        private string _supplierInfo;
-        public string SupplierInfo
+        private Supplier _supplierInfo;
+        public Supplier SupplierInfo
         {
             get { return _supplierInfo; }
-            set { _supplierInfo = value; OnPropertyChanged(nameof(SupplierInfo)); }
+            set
+            {
+                _supplierInfo = value; OnPropertyChanged(nameof(SupplierInfo));
+            }
         }
 
         private string _pictureInfo;
@@ -98,8 +117,8 @@ namespace PRN212_FinalProject.ViewModel
                     IdInfo = _selectItem.Id;
                     NameInfo = _selectItem.Name;
                     DescriptionInfo = _selectItem.Description;
-                    CategoryInfo = _selectItem.Category?.Name;
-                    SupplierInfo = _selectItem.Supplier?.Name;
+                    CategoryInfo = _selectItem.Category;
+                    SupplierInfo = _selectItem.Supplier;
                     PictureInfo = _selectItem.Picture;  // Set filename for Picture
                 }
                 OnPropertyChanged(nameof(SelectItem));
@@ -141,9 +160,9 @@ namespace PRN212_FinalProject.ViewModel
                 Id = GetNewProductId(),
                 Name = NameInfo,
                 Description = DescriptionInfo,
-                CategoryId = db.Categories.FirstOrDefault(c => c.Name == CategoryInfo)?.Id,
-                SupplierId = db.Suppliers.FirstOrDefault(s => s.Name == SupplierInfo)?.Id,
-                Picture = PictureInfo // Set image filename here
+                CategoryId = CategoryInfo?.Id,
+                SupplierId = SupplierInfo?.Id,
+                Picture = PictureInfo
             };
 
             db.Products.Add(newProduct);
@@ -152,6 +171,28 @@ namespace PRN212_FinalProject.ViewModel
 
             ClearInputFields();
             OnPropertyChanged(nameof(Products));
+        }
+
+        private void UpdateProduct(object parameter)
+        {
+            if (SelectItem != null)
+            {
+                var existingProduct = db.Products.Include(p => p.Category).Include(p => p.Supplier).FirstOrDefault(p => p.Id == SelectItem.Id);
+                if (existingProduct != null)
+                {
+                    existingProduct.Name = NameInfo;
+                    existingProduct.Description = DescriptionInfo;
+                    existingProduct.CategoryId = CategoryInfo?.Id;
+                    existingProduct.SupplierId = SupplierInfo?.Id;
+                    existingProduct.Picture = PictureInfo;
+
+                    db.SaveChanges();
+
+                    Products[Products.IndexOf(SelectItem)] = existingProduct;
+                    LoadProducts();
+                    OnPropertyChanged(nameof(Products));
+                }
+            }
         }
 
         private void DeleteProduct(object parameter)
@@ -169,35 +210,13 @@ namespace PRN212_FinalProject.ViewModel
             }
         }
 
-        private void UpdateProduct(object parameter)
-        {
-            if (SelectItem != null)
-            {
-                var existingProduct = db.Products.Include(p => p.Category).Include(p => p.Supplier).FirstOrDefault(p => p.Id == SelectItem.Id);
-                if (existingProduct != null)
-                {
-                    existingProduct.Name = NameInfo;
-                    existingProduct.Description = DescriptionInfo;
-                    existingProduct.CategoryId = db.Categories.FirstOrDefault(c => c.Name == CategoryInfo)?.Id;
-                    existingProduct.SupplierId = db.Suppliers.FirstOrDefault(s => s.Name == SupplierInfo)?.Id;
-                    existingProduct.Picture = PictureInfo;
-
-                    db.SaveChanges();
-
-                    Products[Products.IndexOf(SelectItem)] = existingProduct;
-                    LoadProducts();
-                    OnPropertyChanged(nameof(Products));
-                }
-            }
-        }
+       
 
         private void ClearInputFields()
         {
             IdInfo = string.Empty;
             NameInfo = string.Empty;
             DescriptionInfo = string.Empty;
-            CategoryInfo = string.Empty;
-            SupplierInfo = string.Empty;
             PictureInfo = string.Empty;
         }
     }
