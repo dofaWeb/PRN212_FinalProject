@@ -32,5 +32,10 @@ namespace PRN212_FinalProject
         {
             MainPage.Content = new ProductPage();
         }
+
+        private void Category_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Content = new CategoryPage();
+        }
     }
 }
