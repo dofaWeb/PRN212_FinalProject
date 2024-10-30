@@ -3909,23 +3909,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LENOVO\\.nuget\\packages\\": {},
+    "C:\\Users\\NHAT\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Final Project PRN\\PRN212_FinalProject\\PRN212_FinalProject.csproj",
+      "projectUniqueName": "D:\\study\\5.FA24\\PRN212\\Final_Project\\PRN212_FinalProject\\PRN212_FinalProject.csproj",
       "projectName": "PRN212_FinalProject",
-      "projectPath": "D:\\Final Project PRN\\PRN212_FinalProject\\PRN212_FinalProject.csproj",
-      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "D:\\Final Project PRN\\PRN212_FinalProject\\obj\\",
+      "projectPath": "D:\\study\\5.FA24\\PRN212\\Final_Project\\PRN212_FinalProject\\PRN212_FinalProject.csproj",
+      "packagesPath": "C:\\Users\\NHAT\\.nuget\\packages\\",
+      "outputPath": "D:\\study\\5.FA24\\PRN212\\Final_Project\\PRN212_FinalProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\NHAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

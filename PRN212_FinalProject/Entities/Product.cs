@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace PRN212_FinalProject.Entities;
 
 public partial class Product
@@ -22,4 +22,7 @@ public partial class Product
     public virtual ICollection<ProductItem> ProductItems { get; set; } = new List<ProductItem>();
 
     public virtual Supplier? Supplier { get; set; }
+
+    [NotMapped]
+    public decimal Price { get; set; }
 }

@@ -869,3 +869,5 @@ D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.g.cs
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.g.cs
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.baml
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductDetailPage.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductDetailPage.baml

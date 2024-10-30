@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PRN212_FinalProject.Entities;
+using PRN212_FinalProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,27 @@ namespace PRN212_FinalProject
         public User()
         {
             InitializeComponent();
+        }
+
+        private void ViewProDetail(object sender, RoutedEventArgs e)
+        {
+            var product = (Product)((Button)sender).DataContext;
+            var productId = product.Id;
+
+            // Create view model and page for the selected product
+            var productDetailViewModel = new ProductDetailViewModel(productId);
+            MainFrame.Content = new ProductDetailPage(productDetailViewModel);
+
+            // Toggle visibility
+            ProductsControl.Visibility = Visibility.Collapsed;
+            MainFrame.Visibility = Visibility.Visible;
+        }
+
+        public void ShowProductsList()
+        {
+            ProductsControl.Visibility = Visibility.Visible;
+            MainFrame.Visibility = Visibility.Collapsed;
+            MainFrame.Content = null; // Clear the frame content to remove the ProductDetailPage
         }
     }
 }
