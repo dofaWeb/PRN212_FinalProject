@@ -874,3 +874,8 @@ S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Progra
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\hp-240-g10-i5-9h2e4pt-2-1-750x500.jpg
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\CategoryPage.g.cs
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\CategoryPage.baml
+D:\PRN212-Final\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\dell_xps_13.jpg
+D:\PRN212-Final\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\galaxy_s21.jpg
+D:\PRN212-Final\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\hp-240-g10-i5-9h2e4pt-2-1-750x500.jpg
+D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\CategoryPage.g.cs
+D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\CategoryPage.baml

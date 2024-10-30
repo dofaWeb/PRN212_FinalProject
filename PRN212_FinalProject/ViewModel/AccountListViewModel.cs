@@ -75,6 +75,7 @@ namespace PRN212_FinalProject.ViewModel
 
             // Chuyển đổi sang ObservableCollection để sử dụng cho giao diện
             Accounts = new ObservableCollection<Entities.Account>(accountList);
+            OnPropertyChanged(nameof(Accounts));
         }
 
 
@@ -94,13 +95,8 @@ namespace PRN212_FinalProject.ViewModel
                 db.Accounts.Update(select);
                 db.SaveChanges(); // Lưu thay đổi vào DB
 
-                // Cập nhật lại danh sách khách hàng hiển thị (ObservableCollection)
-                int index = Accounts.IndexOf(select);
-                if (index >= 0)
-                {
-                    Accounts[index] = select; // Cập nhật danh sách hiển thị
-
-                }
+               Accounts.Clear();
+                LoadAccounts();
             }
         }
 
