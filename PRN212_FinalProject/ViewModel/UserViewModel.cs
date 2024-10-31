@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace PRN212_FinalProject.ViewModel
 {
-    class UserViewModel : BaseViewModel
+    public class UserViewModel : BaseViewModel
     {
         public ObservableCollection<Product> Products { get; set; }
         DBContext dbContext;
-        public UserViewModel()
+        private readonly string userId;
+        public UserViewModel(string userId)
         {
+            this.userId = userId;
             LoadProductsData();
         }
 
@@ -31,7 +33,7 @@ namespace PRN212_FinalProject.ViewModel
                     //var proItem = dbContext.ProductItems.Where(p => p.ProductId == product.Id).Order ToList();
                     //product.ProductItems = new ObservableCollection<ProductItem>(proItem);
                 }
-
+                var test = userId;
                 Products = new ObservableCollection<Product>(products);
                 OnPropertyChanged(nameof(Products));
             }

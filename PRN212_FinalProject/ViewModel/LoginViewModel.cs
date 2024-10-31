@@ -35,9 +35,12 @@ namespace PRN212_FinalProject.ViewModel
             string UserName = LoginAVU.Username;
             string Password = LoginAVU.Password;
             
-            var RoleId = db.Accounts.Where(a => a.Username == UserName && a.Password == Password).Select(a => a.RoleId).FirstOrDefault();
+            var acc = db.Accounts.Where(a => a.Username == UserName && a.Password == Password).Select(a => new Entities.Account{
+                 Id = a.Id,
+                 RoleId = a.RoleId,
+            }).FirstOrDefault();
 
-            switch (RoleId)
+            switch (acc.RoleId)
             {
                 case "Role0001":
                     Admin adminWindow = new Admin();
@@ -45,8 +48,9 @@ namespace PRN212_FinalProject.ViewModel
                     break;
 
 
-                case "Role0002": 
-                    User userWindow = new User();
+                case "Role0002":
+                    UserViewModel viewModel = new UserViewModel(acc.Id);
+                    User userWindow = new User(viewModel, acc.Id);
                     userWindow.Show();
                     break;
 

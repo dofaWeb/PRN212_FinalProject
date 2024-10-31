@@ -32,31 +32,17 @@
                     <TextBlock Text="Select Option:" FontSize="16" Margin="10 0"/>
 
 
-                    <ItemsControl ItemsSource="{Binding ProductItems}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Width="200" Height="250" BorderBrush="LightGray" BorderThickness="1" Margin="10">
-                                    <StackPanel>
-                                        <Label Content="{Binding Id}"></Label>
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ComboBox Name="CategoryComboBox" 
+       ItemsSource="{Binding ProductItems}" 
+       SelectedItem="{Binding ProductItemInfor, Mode=TwoWay}"
+       DisplayMemberPath="Option" 
+       SelectedValuePath="Id"
+       Grid.Row="5" Grid.Column="1" Margin="10,1,10,1"/>
 
 
 
-                    <WrapPanel >
-                        <Button Content="RAM: 8GB&#x0a;Storage: 512GB" Margin="5" Width="120"/>
-                        <Button Content="RAM: 16GB&#x0a;Storage: 256GB" Margin="5" Width="120"/>
-                        <Button Content="RAM: 8GB&#x0a;Storage: 128GB" Margin="5" Width="120"/>
-                    </WrapPanel>
-                    <Button Content="Add to Cart" Background="Red" Foreground="White" Width="100" Margin="20 0"/>
+
+                    <Button Content="Add to Cart" Command="{Binding AddToCartCommand}" Background="Red" Foreground="White" Width="100" Margin="20 0"/>
                 </StackPanel>
             </StackPanel>
 
