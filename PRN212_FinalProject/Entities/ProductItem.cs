@@ -18,11 +18,12 @@ public partial class ProductItem
 
     public decimal? Discount { get; set; }
 
-    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual Product? Product { get; set; }
 
     public virtual ICollection<ProductConfiguration> ProductConfigurations { get; set; } = new List<ProductConfiguration>();
+
     [NotMapped]
     public string? Ram { get; set; }
 

@@ -13,7 +13,11 @@ public partial class Order
 
     public string? StateId { get; set; }
 
-    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    public string? ProductItemId { get; set; }
+
+    public int Price { get; set; }
+
+    public virtual ProductItem? ProductItem { get; set; }
 
     public virtual OrderState? State { get; set; }
 
