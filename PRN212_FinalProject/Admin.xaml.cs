@@ -42,5 +42,10 @@ namespace PRN212_FinalProject
         {
             MainPage.Content = new ListAcc();
         }
+
+        private void Order_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Content = new OrderMan();
+        }
     }
 }
