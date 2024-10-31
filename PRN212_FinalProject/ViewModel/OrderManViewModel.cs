@@ -1,10 +1,13 @@
-﻿using PRN212_FinalProject.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PRN212_FinalProject.Entities;
+using PRN212_FinalProject.Helper;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PRN212_FinalProject.ViewModel
 {
@@ -14,10 +17,37 @@ namespace PRN212_FinalProject.ViewModel
         public ObservableCollection<Order> Orders { get; set; }
         public ObservableCollection<OrderState> OrderStates { get; set; }
 
+        public ICommand EditCommand { get; }
+
         public OrderManViewModel()
         {
             db = new DBContext();
+            OrderStates = new ObservableCollection<OrderState>(db.OrderStates.ToList());
             LoadOrder();
+            EditCommand = new RelayCommand(EditItem);
+        }
+
+        void EditItem(object parameter)
+        {
+            if (SelectedItem != null)
+            {
+                // Retrieve the existing order
+                var order = db.Orders.Include(o => o.State).FirstOrDefault(o => o.Id == SelectedItem.Id);
+
+                if (order != null)
+                {
+                    // Detach the current State by setting it to null
+                    order.State = null;
+                    db.SaveChanges(); // Save to apply the detachment
+
+                    // Now assign the new StateId and related State entity
+                    order.StateId = StateInfor.Id;
+                    order.State = db.OrderStates.Find(StateInfor.Id); // Attach the new State entity
+
+                    db.SaveChanges(); // Save changes with the new State relationship
+                    LoadOrder();
+                }
+            }
         }
 
         private Order _selectedItem;
@@ -36,7 +66,7 @@ namespace PRN212_FinalProject.ViewModel
                     DateInfor = _selectedItem.Date;
                     VariationInfor = _selectedItem.ProductItem.Option;
                     PriceInfor = _selectedItem.Price;
-                    StateInfor = _selectedItem.State;
+                    StateInfor = db.OrderStates.Where(p => p.Name == _selectedItem.State.Name).FirstOrDefault();
                 }
                 OnPropertyChanged(nameof(SelectedItem));
             }

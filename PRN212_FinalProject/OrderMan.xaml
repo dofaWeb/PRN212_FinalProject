@@ -87,7 +87,7 @@
     Grid.Column="1" 
     Margin="10,1,10,1"
     ItemsSource="{Binding OrderStates}" 
-    SelectedItem="{Binding StateInfor, Mode=TwoWay}" 
+    SelectedValue="{Binding StateInfor.Id, Mode=TwoWay}" 
     DisplayMemberPath="Name"
     SelectedValuePath="Id" />
 
@@ -97,7 +97,7 @@
         <!-- CRUD Buttons -->
 
         <Button Grid.Column="2" Grid.Row="2" Content="Edit" Width="100" Margin="5" Grid.ColumnSpan="2"
-        Command="{Binding EditProductItemCommand}" />
+        Command="{Binding EditCommand}" />
 
     </Grid>
 </Page>

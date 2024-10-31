@@ -13,42 +13,55 @@ mc:Ignorable="d"
     </Window.DataContext>
 
 
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="0.8*" />
-            <ColumnDefinition Width="0.8*" />
-            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="ID:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Full Name:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Telephone:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Address:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Role ID:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-        <TextBlock Grid.Row="6" Grid.Column="0" Text="Password:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" x:Name="MainFrame" Visibility="Collapsed"></Frame>
 
-        <TextBox Name="CusIdTextBox" Text="{Binding Profile.Id, Mode=TwoWay}" IsReadOnly="True" Grid.Row="0" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="CusNameTextBox" Text="{Binding Profile.Name, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="CusPhoneTextBox" Text="{Binding Profile.Phone, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="CusEmailTextBox" Text="{Binding Profile.Email, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="CusAddressTextBox" Text="{Binding Profile.Address, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
-        <TextBox Name="CusRoleIdTextBox" Text="{Binding Profile.RoleId, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
+        <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" x:Name="ProfileTextBox">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="4*" />
 
+            </Grid.ColumnDefinitions>
 
-        <Button Name="UpdateBtn" Content="Update" Command="{Binding UpdateCustomerCommand}" Grid.Row="1" Grid.Column="3" />
-        <Button Name="ViewOrderHistoryBtn" Content="ViewOrderHistory" Command="{Binding }" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Margin="86,27,86,35" Grid.RowSpan="2" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="ID:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Full Name:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Telephone:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Address:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Role ID:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
+
+            <TextBox Name="CusIdTextBox" Text="{Binding Profile.Id, Mode=TwoWay}" IsReadOnly="True" Grid.Row="0" Grid.Column="1" Margin="10,1,10,1" />
+            <TextBox Name="CusNameTextBox" Text="{Binding Profile.Name, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" />
+            <TextBox Name="CusPhoneTextBox" Text="{Binding Profile.Phone, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
+            <TextBox Name="CusEmailTextBox" Text="{Binding Profile.Email, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
+            <TextBox Name="CusAddressTextBox" Text="{Binding Profile.Address, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
+            <TextBox Name="CusRoleIdTextBox" Text="{Binding Profile.RoleId, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
+
+            <Button Name="UpdateBtn" Content="Update" Command="{Binding UpdateCustomerCommand}" Grid.Row="6" Grid.Column="1" Width="100"/>
+
+        </Grid>
+        <Button Name="a" Content="Profile" Click="ProfileButton" Grid.Row="1" Grid.Column="1" Width="100"/>
+        <Button Name="ViewOrderHistoryBtn" Content="ViewOrderHistory" Click="UserOrderHistoryButton" Grid.Row="2" Grid.Column="1" Width="100"/>
     </Grid>
 </Window>
