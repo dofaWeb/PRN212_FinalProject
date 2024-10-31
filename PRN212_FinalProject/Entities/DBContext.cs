@@ -26,8 +26,6 @@ public partial class DBContext : DbContext
 
     public virtual DbSet<Order> Orders { get; set; }
 
-    public virtual DbSet<OrderItem> OrderItems { get; set; }
-
     public virtual DbSet<OrderState> OrderStates { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
@@ -149,6 +147,8 @@ public partial class DBContext : DbContext
 
             entity.ToTable("Order");
 
+            entity.HasIndex(e => e.ProductItemId, "product_item_id");
+
             entity.HasIndex(e => e.StateId, "state_id");
 
             entity.HasIndex(e => e.UserId, "user_id");
@@ -159,12 +159,20 @@ public partial class DBContext : DbContext
             entity.Property(e => e.Date)
                 .HasColumnType("datetime")
                 .HasColumnName("date");
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.ProductItemId)
+                .HasMaxLength(8)
+                .HasColumnName("product_item_id");
             entity.Property(e => e.StateId)
                 .HasMaxLength(8)
                 .HasColumnName("state_id");
             entity.Property(e => e.UserId)
                 .HasMaxLength(8)
                 .HasColumnName("user_id");
+
+            entity.HasOne(d => d.ProductItem).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.ProductItemId)
+                .HasConstraintName("Order_ibfk_3");
 
             entity.HasOne(d => d.State).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.StateId)
@@ -173,37 +181,6 @@ public partial class DBContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("Order_ibfk_1");
-        });
-
-        modelBuilder.Entity<OrderItem>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("Order_Item");
-
-            entity.HasIndex(e => e.OrderId, "order_id");
-
-            entity.HasIndex(e => e.ProductItemId, "product_item_id");
-
-            entity.Property(e => e.Id)
-                .HasMaxLength(8)
-                .HasColumnName("id");
-            entity.Property(e => e.OrderId)
-                .HasMaxLength(8)
-                .HasColumnName("order_id");
-            entity.Property(e => e.Price).HasColumnName("price");
-            entity.Property(e => e.ProductItemId)
-                .HasMaxLength(8)
-                .HasColumnName("product_item_id");
-            entity.Property(e => e.Quantity).HasColumnName("quantity");
-
-            entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
-                .HasForeignKey(d => d.OrderId)
-                .HasConstraintName("Order_Item_ibfk_1");
-
-            entity.HasOne(d => d.ProductItem).WithMany(p => p.OrderItems)
-                .HasForeignKey(d => d.ProductItemId)
-                .HasConstraintName("Order_Item_ibfk_2");
         });
 
         modelBuilder.Entity<OrderState>(entity =>
