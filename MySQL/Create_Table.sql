@@ -83,18 +83,12 @@ CREATE TABLE Order_State(
 CREATE TABLE `Order`(
     id VARCHAR(8) PRIMARY KEY,
     user_id VARCHAR(8),
+	 product_item_id VARCHAR(8),
     date DATETIME NOT NULL,
+	price INT NOT NULL,
     state_id VARCHAR(8),
     FOREIGN KEY (user_id) REFERENCES Account(id),
-    FOREIGN KEY (state_id) REFERENCES Order_State(id)
-);
-
-CREATE TABLE Order_Item(
-    id VARCHAR(8) PRIMARY KEY,
-    order_id VARCHAR(8),
-    product_item_id VARCHAR(8),
-    quantity INT NOT NULL,
-    price INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES `Order`(id),
+    FOREIGN KEY (state_id) REFERENCES Order_State(id),
     FOREIGN KEY (product_item_id) REFERENCES Product_Item(id)
+
 );
