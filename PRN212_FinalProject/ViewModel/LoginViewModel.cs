@@ -22,55 +22,54 @@ namespace PRN212_FinalProject.ViewModel
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(Login);
-            
+
             LoginAVU = new Entities.Account();
-             db = new Entities.DBContext();
+            db = new Entities.DBContext();
 
-        } 
+        }
 
-        
-       
         public void Login(object parameter)
         {
             string UserName = LoginAVU.Username;
             string Password = LoginAVU.Password;
-            
-            var acc = db.Accounts.Where(a => a.Username == UserName && a.Password == Password).Select(a => new Entities.Account{
-                 Id = a.Id,
-                 RoleId = a.RoleId,
+
+            var acc = db.Accounts.Where(a => a.Username == UserName && a.Password == Password).Select(a => new Entities.Account
+            {
+                Id = a.Id,
+                RoleId = a.RoleId,
             }).FirstOrDefault();
 
-            switch (acc.RoleId)
+            if (acc != null)
             {
-                case "Role0001":
-                    Admin adminWindow = new Admin();
-                    adminWindow.Show();
-                    break;
+                switch (acc.RoleId)
+                {
+                    case "Role0001":
+                        Admin adminWindow = new Admin();
+                        adminWindow.Show();
+                        break;
 
 
-                case "Role0002":
-                    UserViewModel viewModel = new UserViewModel(acc.Id);
-                    User userWindow = new User(viewModel, acc.Id);
+                    case "Role0002":
+                        UserViewModel viewModel = new UserViewModel(acc.Id);
+                        User userWindow = new User(viewModel, acc.Id);
 
-                    //Profile profileWindow = new Profile(acc.Id);
-                    userWindow.Show();
-                    //profileWindow.Show();
-                    break;
+                        //Profile profileWindow = new Profile(acc.Id);
+                        userWindow.Show();
+                        //profileWindow.Show();
 
-
-                default:
-                    MessageBox.Show("UserName or PassWord invalid");
-                    break;
+                        break;
 
 
+                    default:
+                        MessageBox.Show("UserName or PassWord invalid");
+                        break;
 
+                }
             }
-
-         
-
+            else
+            {
+                MessageBox.Show("UserName or PassWord invalid");
+            }
         }
-        
-
-
     }
 }

@@ -893,3 +893,9 @@ S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Progra
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Profile.g.cs
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\OrderMan.baml
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Profile.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\OrderMan.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\Profile.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\UserOrderHistoryPage.g.cs
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\OrderMan.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\Profile.baml
+D:\study\5.FA24\PRN212\Final_Project\PRN212_FinalProject\obj\Debug\net8.0-windows\UserOrderHistoryPage.baml

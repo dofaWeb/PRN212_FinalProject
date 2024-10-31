@@ -50,6 +50,13 @@ namespace PRN212_FinalProject
             MainFrame.Content = null; // Clear the frame content to remove the ProductDetailPage
         }
 
+        private void LogoutButton(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Giả sử `DataContext` của User window là `UserViewModel`
@@ -60,7 +67,7 @@ namespace PRN212_FinalProject
 
             // Tạo và hiển thị Profile window với DataContext là ProfileViewModel
             Profile profileWindow = new Profile(profileViewModel);
-            
+
             profileWindow.Show();
         }
     }

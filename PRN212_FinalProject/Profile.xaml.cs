@@ -30,5 +30,30 @@ namespace PRN212_FinalProject
             InitializeComponent();
             DataContext = new ProfileViewModel(customerId);
         }
+
+        private void ProfileButton(object sender, RoutedEventArgs e)
+        {
+
+            MainFrame.Visibility = Visibility.Collapsed;
+
+            ProfileTextBox.Visibility = Visibility.Visible;
+
+        }
+
+        private void UserOrderHistoryButton(object sender, RoutedEventArgs e)
+        {
+            // Giả sử `DataContext` của User window là `UserViewModel`
+            var profileViewModel = (ProfileViewModel)this.DataContext;
+
+            // Khởi tạo ProfileViewModel với userId từ UserViewModel
+            UserOrderHistoryViewModel userOrderHistoryViewModel = new UserOrderHistoryViewModel(profileViewModel.Profile);
+
+            MainFrame.Content = new UserOrderHistoryPage(userOrderHistoryViewModel);
+
+            MainFrame.Visibility = Visibility.Visible;
+
+            ProfileTextBox.Visibility = Visibility.Collapsed;
+
+        }
     }
 }
