@@ -21,9 +21,12 @@ namespace PRN212_FinalProject
     /// </summary>
     public partial class User : Window
     {
-        public User()
+        private readonly string userId;
+        public User(UserViewModel viewModel, string userId)
         {
             InitializeComponent();
+            this.DataContext = viewModel;
+            this.userId = userId;
         }
 
         private void ViewProDetail(object sender, RoutedEventArgs e)
@@ -32,7 +35,7 @@ namespace PRN212_FinalProject
             var productId = product.Id;
 
             // Create view model and page for the selected product
-            var productDetailViewModel = new ProductDetailViewModel(productId);
+            var productDetailViewModel = new ProductDetailViewModel(productId, userId);
             MainFrame.Content = new ProductDetailPage(productDetailViewModel);
 
             // Toggle visibility

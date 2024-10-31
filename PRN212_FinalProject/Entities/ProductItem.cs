@@ -27,6 +27,9 @@ public partial class ProductItem
     public string? Ram { get; set; }
 
     [NotMapped]
+    public string? Option { get; set; }
+
+    [NotMapped]
     public string? Storage { get; set; }
 
     [NotMapped]
