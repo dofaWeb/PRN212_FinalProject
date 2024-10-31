@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "S:\\FPT University\\3rd year\\5-FA24\\PRN212-Basic Cross-Platform Application Programming With docNET\\Code\\PRN212_FinalProject\\PRN212_FinalProject\\PRN212_FinalProject.csproj": {}
+    "D:\\PRN212-Final\\PRN212_FinalProject\\PRN212_FinalProject.csproj": {}
   },
   "projects": {
-    "S:\\FPT University\\3rd year\\5-FA24\\PRN212-Basic Cross-Platform Application Programming With docNET\\Code\\PRN212_FinalProject\\PRN212_FinalProject\\PRN212_FinalProject.csproj": {
+    "D:\\PRN212-Final\\PRN212_FinalProject\\PRN212_FinalProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\FPT University\\3rd year\\5-FA24\\PRN212-Basic Cross-Platform Application Programming With docNET\\Code\\PRN212_FinalProject\\PRN212_FinalProject\\PRN212_FinalProject.csproj",
+        "projectUniqueName": "D:\\PRN212-Final\\PRN212_FinalProject\\PRN212_FinalProject.csproj",
         "projectName": "PRN212_FinalProject",
-        "projectPath": "S:\\FPT University\\3rd year\\5-FA24\\PRN212-Basic Cross-Platform Application Programming With docNET\\Code\\PRN212_FinalProject\\PRN212_FinalProject\\PRN212_FinalProject.csproj",
-        "packagesPath": "C:\\Users\\gioak\\.nuget\\packages\\",
-        "outputPath": "S:\\FPT University\\3rd year\\5-FA24\\PRN212-Basic Cross-Platform Application Programming With docNET\\Code\\PRN212_FinalProject\\PRN212_FinalProject\\obj\\",
+        "projectPath": "D:\\PRN212-Final\\PRN212_FinalProject\\PRN212_FinalProject.csproj",
+        "packagesPath": "C:\\Users\\giaoh\\.nuget\\packages\\",
+        "outputPath": "D:\\PRN212-Final\\PRN212_FinalProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gioak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\giaoh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
