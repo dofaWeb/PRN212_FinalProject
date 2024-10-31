@@ -83,15 +83,14 @@ namespace PRN212_FinalProject.ViewModel
         }
         void LoadData(string productId)
         {
-            using (db)
-            {
+
                 Product = db.Products.Where(p=> p.Id == productId).FirstOrDefault();
                 Product.Picture = $"pack://application:,,,/Images/{Product.Picture}";
                 OnPropertyChanged(nameof(Product));
                 var query = GetProductItem(productId);
 
                 ProductItems = new ObservableCollection<ProductItem>(query);
-            }
+            
         }
 
         public string GetNewOrderId()
@@ -104,10 +103,31 @@ namespace PRN212_FinalProject.ViewModel
             return $"{prefix}{(number + 1):D7}";
         }
 
+        public int? GetPrice(string productItemId)
+        {
+            var price = db.ProductItems.Where(p => p.Id == productItemId).Select(p => new
+            {
+                Price = ProductItemViewModel.CalculatePriceAfterDiscount(p.SellingPrice, p.Discount / 100)
+            }).FirstOrDefault();
+            return price.Price;
+        }
+
         public void AddOrder(string productItemId)
         {
             string orderId = GetNewOrderId();
             string user_id = userId;
+
+            var newOrder = new Order
+            {
+                Id = orderId,
+                Date = DateTime.Now,
+                StateId = "1",
+                Price = GetPrice(productItemId) ?? 0,
+                ProductItemId = productItemId,
+                UserId = user_id,
+            };
+            db.Orders.Add(newOrder);
+            db.SaveChanges();
         }
 
         public void AddToCart(object parameter)
