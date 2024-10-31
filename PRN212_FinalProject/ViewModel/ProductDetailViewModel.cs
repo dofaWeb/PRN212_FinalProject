@@ -104,10 +104,32 @@ namespace PRN212_FinalProject.ViewModel
             return $"{prefix}{(number + 1):D7}";
         }
 
+        public int? GetPrice(string productItemId)
+        {
+            var price = db.ProductItems.Where(p => p.Id == productItemId).Select(p => new
+            {
+                Price = ProductItemViewModel.CalculatePriceAfterDiscount(p.SellingPrice,p.Discount/100)
+            }).FirstOrDefault();
+            return price.Price;
+        }
+
         public void AddOrder(string productItemId)
         {
             string orderId = GetNewOrderId();
             string user_id = userId;
+
+
+            var newOrder = new Order
+            {
+                Date = DateTime.Now,
+                Id = orderId,
+                UserId = user_id,
+                ProductItemId = productItemId,
+                Price = GetPrice(productItemId) ?? 0,
+                StateId = "1",
+            };
+
+            db.Orders.Add(newOrder);
         }
 
         public void AddToCart(object parameter)
