@@ -49,5 +49,19 @@ namespace PRN212_FinalProject
             MainFrame.Visibility = Visibility.Collapsed;
             MainFrame.Content = null; // Clear the frame content to remove the ProductDetailPage
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Giả sử `DataContext` của User window là `UserViewModel`
+            var userViewModel = (UserViewModel)this.DataContext;
+
+            // Khởi tạo ProfileViewModel với userId từ UserViewModel
+            ProfileViewModel profileViewModel = new ProfileViewModel(userViewModel.UserId);
+
+            // Tạo và hiển thị Profile window với DataContext là ProfileViewModel
+            Profile profileWindow = new Profile(profileViewModel);
+            
+            profileWindow.Show();
+        }
     }
 }

@@ -42,7 +42,7 @@
             <!-- Top Bar -->
             <DockPanel Margin="0 0 0 20">
                 <TextBlock Text="Electronic Shop" FontSize="28" FontWeight="Bold" DockPanel.Dock="Left"/>
-                <Button Content="Profile" Width="80" Margin="5" HorizontalAlignment="Right"/>
+                <Button Content="Profile" Width="80" Margin="5" HorizontalAlignment="Right" Click="Button_Click"/>
             </DockPanel>
 
             <!-- Content Area for Products or Product Details -->

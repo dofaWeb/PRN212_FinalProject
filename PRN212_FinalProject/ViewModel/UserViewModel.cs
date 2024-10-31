@@ -12,10 +12,10 @@ namespace PRN212_FinalProject.ViewModel
     {
         public ObservableCollection<Product> Products { get; set; }
         DBContext dbContext;
-        private readonly string userId;
+        public string UserId { get; }
         public UserViewModel(string userId)
         {
-            this.userId = userId;
+            this.UserId = userId;
             LoadProductsData();
         }
 
@@ -33,7 +33,7 @@ namespace PRN212_FinalProject.ViewModel
                     //var proItem = dbContext.ProductItems.Where(p => p.ProductId == product.Id).Order ToList();
                     //product.ProductItems = new ObservableCollection<ProductItem>(proItem);
                 }
-                var test = userId;
+                var test = UserId;
                 Products = new ObservableCollection<Product>(products);
                 OnPropertyChanged(nameof(Products));
             }

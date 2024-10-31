@@ -51,7 +51,10 @@ namespace PRN212_FinalProject.ViewModel
                 case "Role0002":
                     UserViewModel viewModel = new UserViewModel(acc.Id);
                     User userWindow = new User(viewModel, acc.Id);
+
+                    //Profile profileWindow = new Profile(acc.Id);
                     userWindow.Show();
+                    //profileWindow.Show();
                     break;
 
 
