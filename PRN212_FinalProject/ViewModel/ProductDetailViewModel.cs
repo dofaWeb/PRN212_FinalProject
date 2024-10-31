@@ -130,6 +130,7 @@ namespace PRN212_FinalProject.ViewModel
             };
 
             db.Orders.Add(newOrder);
+            db.SaveChanges();
         }
 
         public void AddToCart(object parameter)
