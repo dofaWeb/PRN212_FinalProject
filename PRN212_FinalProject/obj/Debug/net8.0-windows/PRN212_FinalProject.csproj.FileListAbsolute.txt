@@ -889,3 +889,7 @@ D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductDetailPage.g
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\Profile.g.cs
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\ProductDetailPage.baml
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\Profile.baml
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\OrderMan.g.cs
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Profile.g.cs
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\OrderMan.baml
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\Profile.baml
