@@ -39,7 +39,9 @@
          HeadersVisibility="Column" HorizontalAlignment="Stretch" 
          VerticalAlignment="Stretch" Margin="0,0,0,10">
             <DataGrid.Columns>
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Id}" />
                 <DataGridTextColumn Header="User Name" Binding="{Binding User.Name}" Width="80" />
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding ProductItemId}"/>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding ProductItem.Product.Name}" Width="100" />
                 <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="80" />
                 <DataGridTextColumn Header="Variation" Binding="{Binding ProductItem.Option}" Width="150" />
@@ -69,15 +71,13 @@ Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False"/>
         Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False"/>
         <TextBox Text="{Binding PriceInfor, Mode=TwoWay}" 
         Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False"/>
-        <TextBox Text="{Binding StateInfor, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False"></TextBox>
-
-
+        <TextBox Text="{Binding StateInfor.Name, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False"></TextBox>
 
 
         <!-- CRUD Buttons -->
 
-        <Button Grid.Column="2" Grid.Row="2" Content="Delete" Width="100" Margin="5" Grid.ColumnSpan="2"
-       Command="{Binding DeleteItem}" />
+        <Button x:Name="DeteleButton" Grid.Column="2" Grid.Row="2" Content="Delete" Width="100" Margin="5" Grid.ColumnSpan="2"
+       Command="{Binding DeleteCommand}" IsEnabled="{Binding CanDelete}"/>
 
     </Grid>
 </Page>

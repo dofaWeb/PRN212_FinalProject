@@ -13,7 +13,7 @@ namespace PRN212_FinalProject.ViewModel
 {
     public class OrderManViewModel : BaseViewModel
     {
-        private DBContext db;
+        DBContext db;
         public ObservableCollection<Order> Orders { get; set; }
         public ObservableCollection<OrderState> OrderStates { get; set; }
 
@@ -21,31 +21,24 @@ namespace PRN212_FinalProject.ViewModel
 
         public OrderManViewModel()
         {
-            db = new DBContext();
-            OrderStates = new ObservableCollection<OrderState>(db.OrderStates.ToList());
-            LoadOrder();
+            LoadData();
             EditCommand = new RelayCommand(EditItem);
         }
 
-        void EditItem(object parameter)
+        public void EditItem(object parameter)
         {
             if (SelectedItem != null)
             {
-                // Retrieve the existing order
-                var order = db.Orders.Include(o => o.State).FirstOrDefault(o => o.Id == SelectedItem.Id);
-
-                if (order != null)
+                using(db = new DBContext())
                 {
-                    // Detach the current State by setting it to null
-                    order.State = null;
-                    db.SaveChanges(); // Save to apply the detachment
-
-                    // Now assign the new StateId and related State entity
-                    order.StateId = StateInfor.Id;
-                    order.State = db.OrderStates.Find(StateInfor.Id); // Attach the new State entity
-
-                    db.SaveChanges(); // Save changes with the new State relationship
-                    LoadOrder();
+                    Entities.Order item = db.Orders.Where(p=> p.Id == SelectedItem.Id).FirstOrDefault();
+                    if (item != null)
+                    {
+                        StateInfor = db.OrderStates.Where(p => p.Id == StateInfor.Id).FirstOrDefault();
+                        item.State = StateInfor;
+                        db.SaveChanges();
+                        LoadData();
+                    }
                 }
             }
         }
@@ -66,7 +59,10 @@ namespace PRN212_FinalProject.ViewModel
                     DateInfor = _selectedItem.Date;
                     VariationInfor = _selectedItem.ProductItem.Option;
                     PriceInfor = _selectedItem.Price;
-                    StateInfor = db.OrderStates.Where(p => p.Name == _selectedItem.State.Name).FirstOrDefault();
+                    using (db = new DBContext())
+                    {
+                        StateInfor = db.OrderStates.Where(p => p.Name == _selectedItem.State.Name).FirstOrDefault();
+                    }
                 }
                 OnPropertyChanged(nameof(SelectedItem));
             }
@@ -128,56 +124,59 @@ namespace PRN212_FinalProject.ViewModel
             get => _stateInfor;
             set { _stateInfor = value; OnPropertyChanged(nameof(StateInfor)); }
         }
-        public void LoadOrder()
+        public void LoadData()
         {
-            var orders = from o in db.Orders
-                         join os in db.OrderStates on o.StateId equals os.Id
-                         join pi in db.ProductItems on o.ProductItemId equals pi.Id
-                         join p in db.Products on pi.ProductId equals p.Id
-                         join a in db.Accounts on o.UserId equals a.Id
-                         join pc in db.ProductConfigurations on pi.Id equals pc.ProductItemId
-                         join vo in db.VariationOptions on pc.VariationOptionId equals vo.Id
-                         join va in db.Variations on vo.VariationId equals va.Id
-                         group new { va.Name, vo.Value } by new
-                         {
-                             OrderId = o.Id,
-                             o.Date,
-                             o.Price,
-                             OrderStateName = os.Name,     // Renamed to avoid conflict
-                             AccountId = a.Id,
-                             AccountName = a.Name,         // Renamed to avoid conflict
-                             ProductName = p.Name          // Renamed to avoid conflict
-                         } into g
-                         select new Order
-                         {
-                             Id = g.Key.OrderId,
-                             Date = g.Key.Date,
-                             Price = g.Key.Price,
-                             State = new OrderState
+            using (db = new DBContext())
+            {
+                var orders = from o in db.Orders
+                             join os in db.OrderStates on o.StateId equals os.Id
+                             join pi in db.ProductItems on o.ProductItemId equals pi.Id
+                             join p in db.Products on pi.ProductId equals p.Id
+                             join a in db.Accounts on o.UserId equals a.Id
+                             join pc in db.ProductConfigurations on pi.Id equals pc.ProductItemId
+                             join vo in db.VariationOptions on pc.VariationOptionId equals vo.Id
+                             join va in db.Variations on vo.VariationId equals va.Id
+                             group new { va.Name, vo.Value } by new
                              {
-                                 Name = g.Key.OrderStateName
-                             },
-                             User = new Entities.Account
+                                 OrderId = o.Id,
+                                 o.Date,
+                                 o.Price,
+                                 OrderStateName = os.Name,     // Renamed to avoid conflict
+                                 AccountId = a.Id,
+                                 AccountName = a.Name,         // Renamed to avoid conflict
+                                 ProductName = p.Name          // Renamed to avoid conflict
+                             } into g
+                             select new Order
                              {
-                                 Id = g.Key.AccountId,
-                                 Name = g.Key.AccountName
-                             },
-                             ProductItem = new ProductItem
-                             {
-                                 Product = new Product
+                                 Id = g.Key.OrderId,
+                                 Date = g.Key.Date,
+                                 Price = g.Key.Price,
+                                 State = new OrderState
                                  {
-                                     Name = g.Key.ProductName
+                                     Name = g.Key.OrderStateName
                                  },
-                                 Option = "Ram: " + g.Where(x => x.Name == "Ram").Select(x => x.Value).FirstOrDefault() +
-                                          " Storage: " + g.Where(x => x.Name == "Storage").Select(x => x.Value).FirstOrDefault()
-                             },
+                                 User = new Entities.Account
+                                 {
+                                     Id = g.Key.AccountId,
+                                     Name = g.Key.AccountName
+                                 },
+                                 ProductItem = new ProductItem
+                                 {
+                                     Product = new Product
+                                     {
+                                         Name = g.Key.ProductName
+                                     },
+                                     Option = "Ram: " + g.Where(x => x.Name == "Ram").Select(x => x.Value).FirstOrDefault() +
+                                              " Storage: " + g.Where(x => x.Name == "Storage").Select(x => x.Value).FirstOrDefault()
+                                 },
 
-                         };
+                             };
 
-            Orders = new ObservableCollection<Order>(orders.ToList());
-            OrderStates = new ObservableCollection<OrderState>(db.OrderStates.ToList());
+                Orders = new ObservableCollection<Order>(orders.ToList());
+                OrderStates = new ObservableCollection<OrderState>(db.OrderStates.ToList());
+                OnPropertyChanged(nameof(Orders));
+                OnPropertyChanged(nameof(OrderStates));
+            }
         }
-
-
     }
 }

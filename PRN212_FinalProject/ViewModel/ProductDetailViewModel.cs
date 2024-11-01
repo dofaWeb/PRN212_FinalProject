@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PRN212_FinalProject.ViewModel
@@ -22,14 +23,14 @@ namespace PRN212_FinalProject.ViewModel
 
         DBContext db;
 
-        public ICommand AddToCartCommand { get; }
+        public ICommand OrderCommand { get; }
 
         private readonly string userId;
         public ProductDetailViewModel(string productId, string userId)
         {
             db = new DBContext();
             LoadData(productId);
-            AddToCartCommand = new RelayCommand(AddToCart);
+            OrderCommand = new RelayCommand(OrderItem);
             this.userId = userId;
         }
         public string GetProductVariationOption(string productItemId, string option)
@@ -83,34 +84,53 @@ namespace PRN212_FinalProject.ViewModel
         }
         void LoadData(string productId)
         {
-            using (db)
-            {
-                Product = db.Products.Where(p=> p.Id == productId).FirstOrDefault();
-                Product.Picture = $"pack://application:,,,/Images/{Product.Picture}";
-                OnPropertyChanged(nameof(Product));
-                var query = GetProductItem(productId);
 
-                ProductItems = new ObservableCollection<ProductItem>(query);
-            }
+            Product = db.Products.Where(p => p.Id == productId).FirstOrDefault();
+            Product.VirtualPicture = $"pack://application:,,,/Images/{Product.Picture}";
+            OnPropertyChanged(nameof(Product));
+            var query = GetProductItem(productId);
+
+            ProductItems = new ObservableCollection<ProductItem>(query);
+
         }
 
         public string GetNewOrderId()
         {
+
             string lastId = db.Orders.OrderByDescending(a => a.Id).Select(a => a.Id).FirstOrDefault();
             if (lastId == null) return "O0000001";
 
             string prefix = lastId.Substring(0, 1);
             int number = int.Parse(lastId.Substring(1));
             return $"{prefix}{(number + 1):D7}";
+
         }
 
         public int? GetPrice(string productItemId)
         {
+
             var price = db.ProductItems.Where(p => p.Id == productItemId).Select(p => new
             {
-                Price = ProductItemViewModel.CalculatePriceAfterDiscount(p.SellingPrice,p.Discount/100)
+                Price = ProductItemViewModel.CalculatePriceAfterDiscount(p.SellingPrice, p.Discount / 100)
             }).FirstOrDefault();
             return price.Price;
+
+        }
+
+        public bool updateProductItemQuantity(string proItemId)
+        {
+
+            var proItem = db.ProductItems.Where(p => p.Id == proItemId).FirstOrDefault();
+            proItem.Quantity -= 1;
+            if (proItem.Quantity >= 0)
+            {
+                db.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void AddOrder(string productItemId)
@@ -128,12 +148,21 @@ namespace PRN212_FinalProject.ViewModel
                 Price = GetPrice(productItemId) ?? 0,
                 StateId = "1",
             };
+            var check = updateProductItemQuantity(newOrder.ProductItemId);
+            if (check)
+            {
+                db.Orders.Add(newOrder);
+                db.SaveChanges();
+                MessageBox.Show("Buy Successfully\nEnjoy your time!");
+            }
+            else
+            {
+                MessageBox.Show("The Product is out of stock!");
+            }
 
-            db.Orders.Add(newOrder);
-            db.SaveChanges();
         }
 
-        public void AddToCart(object parameter)
+        public void OrderItem(object parameter)
         {
             var proItemId = ProductItemInfor?.Id;
             if (proItemId != null)
