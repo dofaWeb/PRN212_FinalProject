@@ -61,7 +61,7 @@
                         <DataTemplate>
                             <Border Width="200" Height="250" BorderBrush="LightGray" BorderThickness="1" Margin="10">
                                 <StackPanel>
-                                    <Image Source="{Binding Picture}" Height="150" Margin="5"/>
+                                    <Image Source="{Binding VirtualPicture}" Height="150" Margin="5"/>
                                     <TextBlock Text="{Binding Name}" FontSize="16" Margin="5"/>
                                     <Button Content="View Product Detail" Click="ViewProDetail"/>
                                 </StackPanel>

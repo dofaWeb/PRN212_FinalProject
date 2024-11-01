@@ -25,7 +25,7 @@
 
             <!-- Product Image and Details -->
             <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding Product.Picture}" Height="200" Margin="20"/>
+                <Image Source="{Binding Product.VirtualPicture}" Height="200" Margin="20"/>
                 <StackPanel Margin="20">
                     <TextBlock Text="{Binding Product.Name}" FontSize="24" FontWeight="Bold"/>
                     <TextBlock Text="12,300,000 VND" FontSize="20" Foreground="Red" Margin="10 0"/>
@@ -42,7 +42,7 @@
 
 
 
-                    <Button Content="Add to Cart" Command="{Binding AddToCartCommand}" Background="Red" Foreground="White" Width="100" Margin="20 0"/>
+                    <Button Content="Buy" Command="{Binding OrderCommand}" Background="Red" Foreground="White" Width="100" Margin="20 0"/>
                 </StackPanel>
             </StackPanel>
 

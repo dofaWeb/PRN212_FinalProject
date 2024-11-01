@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PRN212_FinalProject.Entities;
 
@@ -10,6 +11,9 @@ public partial class Product
     public string Name { get; set; } = null!;
 
     public string? Picture { get; set; }
+
+    [NotMapped]
+    public string? VirtualPicture { get; set; }
 
     public string? Description { get; set; }
 

@@ -135,7 +135,7 @@ namespace PRN212_FinalProject.ViewModel
                         {
                             Id = p.Id,
                             Name = p.Name,
-                            Picture = p.Picture,
+                            Picture = p.Picture??"",
                             Description = p.Description,
                             Category = c,
                             Supplier = s,
