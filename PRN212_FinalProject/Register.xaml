@@ -19,6 +19,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -50,8 +52,10 @@
         <TextBlock Text="Address" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
         <TextBox x:Name="AddressTextBox" Grid.Row="5" Grid.Column="1" Width="200" Height="25" Margin="5" Text="{Binding Regis.Address}"/>
 
+        
         <!-- Register Button -->
         <Button Content="Register" Grid.Row="6" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Command="{Binding RegisterCommand}" />
+        <Button Content="Login" Grid.Row="7" Grid.Column="1" Click="LoginButton" Width="100" Height="30"></Button>
     </Grid>
 
 </Window>

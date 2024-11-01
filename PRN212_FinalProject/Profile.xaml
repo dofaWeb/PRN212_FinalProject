@@ -61,6 +61,7 @@ mc:Ignorable="d"
             <Button Name="UpdateBtn" Content="Update" Command="{Binding UpdateCustomerCommand}" Grid.Row="6" Grid.Column="1" Width="100"/>
 
         </Grid>
+        <Button Content="Back" Click="BackButton" Grid.Row="0" Grid.Column="1" Width="100"/>
         <Button Name="a" Content="Profile" Click="ProfileButton" Grid.Row="1" Grid.Column="1" Width="100"/>
         <Button Name="ViewOrderHistoryBtn" Content="ViewOrderHistory" Click="UserOrderHistoryButton" Grid.Row="2" Grid.Column="1" Width="100"/>
     </Grid>

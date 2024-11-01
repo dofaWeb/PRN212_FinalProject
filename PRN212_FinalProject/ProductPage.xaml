@@ -51,6 +51,7 @@
 
         <!-- TextBox Bindings for product details -->
         <TextBox Name="ProductId" Text="{Binding IdInfo, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" IsEnabled="False" />
+        <Button Content="Select Picture" Width="80" Command="{Binding SelectPictureCommand}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="10,1,10,1" />
         <TextBox Name="Picture" Text="{Binding PictureInfo, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
         <TextBox Name="ProductName" Text="{Binding NameInfo, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
         <TextBox Name="Description" Text="{Binding DescriptionInfo, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />

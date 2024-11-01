@@ -44,7 +44,7 @@
                 <TextBlock Text="Electronic Shop" FontSize="28" FontWeight="Bold" DockPanel.Dock="Left"/>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
                     <Button Content="Logout" Click="LogoutButton" Margin="5"/>
-                    <Button Content="Profile" Width="80" Margin="5" Click="Button_Click"/>
+                    <Button Content="Profile" Width="80" Margin="5" Click="ProfileButton"/>
                 </StackPanel>
             </DockPanel>
 

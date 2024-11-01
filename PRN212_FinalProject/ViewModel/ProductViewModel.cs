@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using PRN212_FinalProject.Entities;
 using PRN212_FinalProject.Helper;
 using System;
@@ -18,6 +19,7 @@ namespace PRN212_FinalProject.ViewModel
         public ICommand EditProductCommand { get; }
         public ICommand DeleteProductCommand { get; }
 
+        public ICommand SelectPictureCommand { get; }
         public ObservableCollection<Entities.Product> Products { get; set; }
         public ObservableCollection<Category> CategoryList { get; set; }
         public ObservableCollection<Supplier> SupplierList { get; set; }
@@ -29,9 +31,25 @@ namespace PRN212_FinalProject.ViewModel
             AddProductCommand = new RelayCommand(AddProduct);
             DeleteProductCommand = new RelayCommand(DeleteProduct);
             EditProductCommand = new RelayCommand(UpdateProduct);
+            SelectPictureCommand = new RelayCommand(param => SelectPicture()); // 
             LoadProducts();
             LoadCategory();
             LoadSupplier();
+        }
+
+        public void SelectPicture()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                PictureInfo = System.IO.Path.GetFileName(openFileDialog.FileName); // chỉ lấy tên tệp
+                                                                                   // Hoặc lưu toàn bộ đường dẫn ảnh:
+                                                                                   // PictureInfo = openFileDialog.FileName;
+            }
         }
 
         public void LoadCategory()
@@ -155,6 +173,25 @@ namespace PRN212_FinalProject.ViewModel
 
         private void AddProduct(object parameter)
         {
+            //// Ensure image is copied to the project’s Resources folder in the runtime directory.
+            //string resourcesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources");
+            //Directory.CreateDirectory(resourcesPath);
+
+            //// Get image name and paths
+            //string imageName = Path.GetFileName(PictureInfo);
+            //string targetPath = Path.Combine(resourcesPath, imageName);
+
+            //// Define newTargetPath pointing to project Images folder (for database storage)
+            //string projectBasePath = AppDomain.CurrentDomain.BaseDirectory;
+            //string newTargetPath = Path.Combine(projectBasePath.Substring(0, projectBasePath.IndexOf("PRN212_FinalProject") + "PRN212_FinalProject".Length), "Images", imageName);
+
+            //// Copy image if not already present in Resources folder (runtime directory)
+            //if (!File.Exists(newTargetPath))
+            //{
+            //    File.Copy(PictureInfo, newTargetPath);
+            //}
+
+            // Set product properties and add to database (using relative path)
             var newProduct = new Product
             {
                 Id = GetNewProductId(),
@@ -172,6 +209,8 @@ namespace PRN212_FinalProject.ViewModel
             ClearInputFields();
             OnPropertyChanged(nameof(Products));
         }
+
+
 
         private void UpdateProduct(object parameter)
         {
