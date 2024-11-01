@@ -47,5 +47,12 @@ namespace PRN212_FinalProject
         {
             MainPage.Content = new OrderMan();
         }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
     }
 }

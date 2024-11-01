@@ -57,7 +57,7 @@ namespace PRN212_FinalProject
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ProfileButton(object sender, RoutedEventArgs e)
         {
             // Giả sử `DataContext` của User window là `UserViewModel`
             var userViewModel = (UserViewModel)this.DataContext;

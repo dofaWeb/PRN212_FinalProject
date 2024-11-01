@@ -65,6 +65,8 @@ namespace PRN212_FinalProject.ViewModel
                         break;
 
                 }
+                // Close the Login window
+                Application.Current.Windows.OfType<Login>().FirstOrDefault()?.Close();
             }
             else
             {

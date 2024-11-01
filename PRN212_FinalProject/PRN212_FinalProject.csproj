@@ -9,8 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\dell_xps_13.jpg" />
+    <None Remove="Images\galaxy_s21.jpg" />
     <None Remove="Images\Hp.jpg" />
     <None Remove="Images\HPLaptop.jpg" />
+    <None Remove="Images\iphone-16.jpg" />
     <None Remove="Images\Iphone.jpg" />
     <None Remove="Images\Lenovo.jpg" />
   </ItemGroup>
@@ -33,12 +36,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\dell_xps_13.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\galaxy_s21.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Hp.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\HPLaptop.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\iphone-16.jpg" />
     <Resource Include="Images\Iphone.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -50,12 +60,6 @@
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Images\dell_xps_13.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Images\galaxy_s21.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Images\hp-240-g10-i5-9h2e4pt-2-1-750x500.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

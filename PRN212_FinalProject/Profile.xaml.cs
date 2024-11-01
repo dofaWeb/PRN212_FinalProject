@@ -40,6 +40,13 @@ namespace PRN212_FinalProject
 
         }
 
+        private void BackButton(object sender, RoutedEventArgs e)
+        {
+
+            this.Close();
+
+        }
+
         private void UserOrderHistoryButton(object sender, RoutedEventArgs e)
         {
             // Giả sử `DataContext` của User window là `UserViewModel`
