@@ -867,8 +867,6 @@ D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.g.cs
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.g.cs
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\ListAcc.baml
 D:\Final Project PRN\PRN212_FinalProject\obj\Debug\net8.0-windows\Register.baml
-S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\dell_xps_13.jpg
-S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\galaxy_s21.jpg
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\bin\Debug\net8.0-windows\Images\hp-240-g10-i5-9h2e4pt-2-1-750x500.jpg
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\CategoryPage.g.cs
 S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\CategoryPage.baml
@@ -899,3 +897,5 @@ D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\OrderMan.g.cs
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\UserOrderHistoryPage.g.cs
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\OrderMan.baml
 D:\PRN212-Final\PRN212_FinalProject\obj\Debug\net8.0-windows\UserOrderHistoryPage.baml
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\UserOrderHistoryPage.g.cs
+S:\FPT University\3rd year\5-FA24\PRN212-Basic Cross-Platform Application Programming With docNET\Code\PRN212_FinalProject\PRN212_FinalProject\obj\Debug\net8.0-windows\UserOrderHistoryPage.baml
