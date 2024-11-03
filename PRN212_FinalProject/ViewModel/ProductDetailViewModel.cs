@@ -19,7 +19,8 @@ namespace PRN212_FinalProject.ViewModel
 
         public Product Product { get; set; }
 
-        public ProductItem ProductItemSelected { get; set; }
+
+        public int? Price { get; set; }
 
         DBContext db;
 
@@ -80,7 +81,7 @@ namespace PRN212_FinalProject.ViewModel
         public ProductItem ProductItemInfor
         {
             get { return _productItemInfor; }
-            set { _productItemInfor = value; OnPropertyChanged(nameof(_productItemInfor)); }
+            set { _productItemInfor = value; OnPropertyChanged(nameof(ProductItemInfor)); }
         }
         void LoadData(string productId)
         {
@@ -91,7 +92,6 @@ namespace PRN212_FinalProject.ViewModel
             var query = GetProductItem(productId);
 
             ProductItems = new ObservableCollection<ProductItem>(query);
-
         }
 
         public string GetNewOrderId()

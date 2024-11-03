@@ -28,12 +28,12 @@
                 <Image Source="{Binding Product.VirtualPicture}" Height="200" Margin="20"/>
                 <StackPanel Margin="20">
                     <TextBlock Text="{Binding Product.Name}" FontSize="24" FontWeight="Bold"/>
-                    <TextBlock Text="12,300,000 VND" FontSize="20" Foreground="Red" Margin="10 0"/>
+                    <TextBlock Text="{Binding ProductItemInfor.PriceAfterDiscount}" FontSize="20" Foreground="Red" Margin="10 0"/>
                     <TextBlock Text="Select Option:" FontSize="16" Margin="10 0"/>
 
 
                     <ComboBox Name="CategoryComboBox" 
-       ItemsSource="{Binding ProductItems}" 
+       ItemsSource="{Binding ProductItems}"
        SelectedItem="{Binding ProductItemInfor, Mode=TwoWay}"
        DisplayMemberPath="Option" 
        SelectedValuePath="Id"
@@ -47,8 +47,7 @@
             </StackPanel>
 
             <!-- Product Description -->
-            <TextBlock Text="Description" FontSize="20" Margin="10 0"/>
-            <TextBlock Text="Lenovo laptop." FontSize="16"/>
+            <TextBlock Text="{Binding Product.Description}" FontSize="20" Margin="10 0"/>
         </StackPanel>
     </Grid>
 </Page>
