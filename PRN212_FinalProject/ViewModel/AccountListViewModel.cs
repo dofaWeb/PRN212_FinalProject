@@ -13,6 +13,7 @@ using System.Windows.Input;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 using System.Security.Cryptography;
+using PRN212_FinalProject.Entities;
 
 namespace PRN212_FinalProject.ViewModel
 {
@@ -21,6 +22,9 @@ namespace PRN212_FinalProject.ViewModel
         Entities.DBContext db;
 
         public ObservableCollection<Entities.Account> Accounts { get; set; }
+        public ObservableCollection<Entities.RoleName> AccountRoles { get; set; }
+        public ObservableCollection<Entities.AccountState> AccountStates { get; set; }
+
 
         public Entities.Account Accountt { get; set; }
 
@@ -34,7 +38,7 @@ namespace PRN212_FinalProject.ViewModel
         public AccountListViewModel()
         {
             db = new Entities.DBContext();
-            LoadAccounts();
+            LoadAccountss();
             Adds = new RelayCommand(Add);
             //Accountt = new Entities.Account();
             //db = new Entities.DBContext();
@@ -42,63 +46,109 @@ namespace PRN212_FinalProject.ViewModel
             Updates = new RelayCommand(Update);
             Deletes = new RelayCommand(Delete);
         }
-        private void LoadAccounts()
+
+
+        private void LoadAccountss()
         {
-            // Lấy danh sách tài khoản từ cơ sở dữ liệu, bao gồm cả Role và State
-            // Sử dụng select new để chọn các thuộc tính cần thiết và khởi tạo Entities.Account
-            var accountList = db.Accounts
-                                .Include(a => a.Role)   // Nạp thông tin từ bảng Role_Name
-                                .Include(a => a.State)  // Nạp thông tin từ bảng Account_State
-                                .Select(a => new Entities.Account
-                                {
-                                    Id = a.Id,
-                                    Username = a.Username,
-                                    Password = a.Password,
-                                    Name = a.Name,
-                                    Phone = a.Phone,
-                                    Email = a.Email,
-                                    Address = a.Address,
-                                    RoleId = a.RoleId,
-                                    StateId = a.StateId,
-                                    Role = new Entities.RoleName
-                                    {
-                                        Id = a.Role.Id,
-                                        Name = a.Role.Name
-                                    },
-                                    State = new Entities.AccountState
-                                    {
-                                        Id = a.State.Id,
-                                        Name = a.State.Name
-                                    }
-                                })
-                                .ToList();
-
-            // Chuyển đổi sang ObservableCollection để sử dụng cho giao diện
-            Accounts = new ObservableCollection<Entities.Account>(accountList);
-            OnPropertyChanged(nameof(Accounts));
-        }
-
-
-        public void Update(object parameter)
-        {
-            if (select != null) // Kiểm tra nếu có tài khoản được chọn
+            using (var context = new Entities.DBContext())
             {
-                // Cập nhật thông tin từ view model vào đối tượng 'select' (Account đã chọn)
-                select.Username = Username;
-                select.Phone = Phone;
-                select.Address = Adress;
-                select.Email = Email;
-                select.Role.Name = Role; // Cập nhật Role nếu cần thiết
-                select.State.Name = State; // Cập nhật State nếu cần thiết
+                Accounts = new ObservableCollection<Entities.Account>(context.Accounts.ToList());
+                AccountRoles = new ObservableCollection<Entities.RoleName>(context.RoleNames.ToList());
+                AccountStates = new ObservableCollection<Entities.AccountState>(context.AccountStates.ToList());
 
-                // Cập nhật đối tượng 'select' trong DB
-                db.Accounts.Update(select);
-                db.SaveChanges(); // Lưu thay đổi vào DB
-
-               Accounts.Clear();
-                LoadAccounts();
+                OnPropertyChanged(nameof(Accounts));
+                OnPropertyChanged(nameof(AccountRoles));
+                OnPropertyChanged(nameof(AccountStates));
             }
         }
+
+        public void Add(object parameter)
+        {
+            // Kiểm tra nếu username đã tồn tại trong cơ sở dữ liệu
+            var existingUser = db.Accounts.FirstOrDefault(a => a.Username == Username);
+            if (existingUser != null)
+            {
+                MessageBox.Show("Username đã tồn tại. Vui lòng chọn tên đăng nhập khác.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu.");
+                return;
+            }
+            string hashedPassword = HashPasswordWithMD5(Password);
+
+
+            var newAccount = new Entities.Account
+            {
+                Id = GetNewId(),
+                Username = Username,
+                Password = hashedPassword,
+                Name = Username,
+                Phone = Phone,
+                Email = Email,
+                Address = Adress,
+                RoleId = "Role0002",
+                StateId = "S0000001"
+
+            };
+
+
+            db.Accounts.Add(newAccount);
+            db.SaveChanges();
+            var accountWithRoleAndState = db.Accounts
+                .Include(a => a.Role)
+                .Include(a => a.State)
+                .FirstOrDefault(a => a.Id == newAccount.Id);
+
+            if (accountWithRoleAndState != null)
+            {
+                // Thêm tài khoản mới vào ObservableCollection để cập nhật giao diện
+                Accounts.Add(newAccount);
+
+                // Hiển thị thông báo thành công
+                MessageBox.Show("Tài khoản đã được thêm thành công.");
+            }
+
+        }
+        public void Update(object parameter)
+        {
+            if (select != null)
+            {
+                // Kiểm tra xem bản ghi có còn tồn tại không
+                var existingAccount = db.Accounts.Find(select.Id);
+                if (existingAccount == null)
+                {
+                    MessageBox.Show("Tài khoản này không còn tồn tại trong cơ sở dữ liệu.");
+                    return;
+                }
+
+                try
+                {
+                    // Cập nhật các thuộc tính
+                    existingAccount.Username = Username;
+                    existingAccount.Phone = Phone;
+                    existingAccount.Address = Adress;
+                    existingAccount.Email = Email;
+                    existingAccount.RoleId = RoleId;
+                    existingAccount.StateId = StateId;
+
+                    db.SaveChanges();
+                    // Cập nhật ObservableCollection
+                    Accounts.Clear();
+                    LoadAccountss();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    MessageBox.Show("Có lỗi xảy ra khi cập nhật: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Có lỗi không xác định: " + ex.Message);
+                }
+            }
+        }
+
 
 
         public void Delete(object parameter)
@@ -134,62 +184,13 @@ namespace PRN212_FinalProject.ViewModel
                     Phone = _select.Phone;
                     Adress = _select.Address;
                     Email = _select.Email;
-                    Role = _select.Role.Name;
-                    State = _select.State.Name;
+                    RoleId = _select.Role.Id;
+                    StateId = _select.State.Id;
                 }
             }
 
         }
-        public void Add(object parameter)
-        {
-            // Kiểm tra nếu username đã tồn tại trong cơ sở dữ liệu
-            var existingUser = db.Accounts.FirstOrDefault(a => a.Username == Username);
-            if (existingUser != null)
-            {
-                MessageBox.Show("Username đã tồn tại. Vui lòng chọn tên đăng nhập khác.");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(Password))
-            {
-                MessageBox.Show("Vui lòng nhập mật khẩu.");
-                return;
-            }
-            string hashedPassword = HashPasswordWithMD5(Password);
 
-            // Tạo tài khoản mới
-            var newAccount = new Entities.Account
-            {
-                Id = GetNewId(),         // Lấy ID mới theo quy tắc tạo ID đã có
-                Username = Username,     // Sử dụng thông tin từ ViewModel
-                Password = hashedPassword, // Bạn có thể cập nhật logic mật khẩu theo yêu cầu
-                Name = Username,         // Sử dụng tạm thời tên là username
-                Phone = Phone,
-                Email = Email,
-                Address = Adress,
-                RoleId = "Role0002",
-                StateId = "S0000001"
-
-            };
-
-            // Thêm tài khoản mới vào cơ sở dữ liệu
-            db.Accounts.Add(newAccount);
-            db.SaveChanges();  // Lưu thay đổi vào cơ sở dữ liệu
-                               // Tải lại tài khoản vừa thêm từ cơ sở dữ liệu cùng với Role và State
-            var accountWithRoleAndState = db.Accounts
-                .Include(a => a.Role)  // Nạp thông tin Role từ cơ sở dữ liệu
-                .Include(a => a.State) // Nạp thông tin State từ cơ sở dữ liệu
-                .FirstOrDefault(a => a.Id == newAccount.Id);
-
-            if (accountWithRoleAndState != null)
-            {
-                // Thêm tài khoản mới vào ObservableCollection để cập nhật giao diện
-                Accounts.Add(newAccount);
-
-                // Hiển thị thông báo thành công
-                MessageBox.Show("Tài khoản đã được thêm thành công.");
-            }
-
-        }
 
 
         public string GetNewId()
@@ -232,6 +233,31 @@ namespace PRN212_FinalProject.ViewModel
                 return builder.ToString();
             }
         }
+
+        public dynamic GetRole()
+        {
+            // Lấy danh sách RoleName từ DB và trả về Id và Name cho mỗi Role
+            var result = db.RoleNames.Select(p => new RoleName
+            {
+                Id = p.Id,
+                Name = p.Name
+            }).ToList();
+
+            return result;
+        }
+
+        public dynamic GetState()
+        {
+            // Lấy danh sách AccountState từ DB, bao gồm Id và Name của mỗi trạng thái
+            var result = db.AccountStates.Select(p => new AccountState
+            {
+                Id = p.Id,
+                Name = p.Name
+            }).ToList();
+
+            return result;
+        }
+
         private string _ID;
         public string ID
         {
@@ -314,6 +340,27 @@ namespace PRN212_FinalProject.ViewModel
             }
         }
 
+        private string _RoleId;
+        public string RoleId
+        {
+            get { return _RoleId; }
+            set
+            {
+                _RoleId = value;
+                OnPropertyChanged(nameof(RoleId));
+            }
+        }
+
+        private string _StateId;
+        public string StateId
+        {
+            get { return _StateId; }
+            set
+            {
+                _StateId = value;
+                OnPropertyChanged(nameof(StateId));
+            }
+        }
 
 
 

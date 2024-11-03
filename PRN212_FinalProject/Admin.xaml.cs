@@ -54,5 +54,10 @@ namespace PRN212_FinalProject
             login.Show();
             this.Close();
         }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

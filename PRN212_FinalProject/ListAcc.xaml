@@ -46,8 +46,19 @@
         <TextBox Name="CusTelTextBox" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" Text="{Binding Phone}"></TextBox>
         <TextBox Name="CusEmailTextBox" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" Text="{Binding Email}"></TextBox>
         <TextBox Name="CusBirthdayTextBox" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" Text="{Binding Adress}"></TextBox>
-        <TextBox Name="CusRoleTextBox" Grid.Row="6" Grid.Column="1" Margin="10,1,10,1" Text="{Binding Role}"></TextBox>
-        <TextBox Name="CusStateTextBox" Grid.Row="7" Grid.Column="1" Margin="10,1,10,1" Text="{Binding State}"></TextBox>
+        <!-- Role ComboBox -->
+        <ComboBox Grid.Row="6" Grid.Column="1" Margin="10,1,10,1"
+ItemsSource="{Binding AccountRoles}" 
+DisplayMemberPath="Name" 
+SelectedValuePath="Id" 
+SelectedValue="{Binding RoleId, Mode=TwoWay}" />
+
+        <!-- State ComboBox -->
+        <ComboBox Grid.Row="7" Grid.Column="1" Margin="10,1,10,1"
+ItemsSource="{Binding AccountStates}" 
+DisplayMemberPath="Name" 
+SelectedValuePath="Id" 
+SelectedValue="{Binding StateId, Mode=TwoWay}" />
         <TextBox Name="CusPassTextBox" Grid.Row="8" Grid.Column="1" Margin="10,1,10,1" Text="{Binding Password}"></TextBox>
 
 
