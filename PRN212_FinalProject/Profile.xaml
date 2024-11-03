@@ -17,8 +17,8 @@ mc:Ignorable="d"
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
-
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
@@ -28,7 +28,7 @@ mc:Ignorable="d"
 
         <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" x:Name="MainFrame" Visibility="Collapsed"></Frame>
 
-        <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" x:Name="ProfileTextBox">
+        <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" x:Name="ProfileTextBox" Background="#E0FFFF">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
@@ -41,28 +41,25 @@ mc:Ignorable="d"
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="4*" />
-
             </Grid.ColumnDefinitions>
 
-            
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Full Name:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Telephone:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Address:" FontSize="15" HorizontalAlignment="Right" Margin="3" />
-            
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Full Name:" FontSize="16" HorizontalAlignment="Right" Margin="3" Foreground="#4682B4"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Telephone:" FontSize="16" HorizontalAlignment="Right" Margin="3" Foreground="#4682B4"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" FontSize="16" HorizontalAlignment="Right" Margin="3" Foreground="#4682B4"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Address:" FontSize="16" HorizontalAlignment="Right" Margin="3" Foreground="#4682B4"/>
 
             <TextBox Name="CusIdTextBox" Visibility="Hidden" Text="{Binding Profile.Id, Mode=TwoWay}" IsReadOnly="True" Grid.Row="0" Grid.Column="1" Margin="10,1,10,1" />
-            <TextBox Name="CusNameTextBox" Text="{Binding Profile.Name, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" />
-            <TextBox Name="CusPhoneTextBox" Text="{Binding Profile.Phone, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" />
-            <TextBox Name="CusEmailTextBox" Text="{Binding Profile.Email, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" />
-            <TextBox Name="CusAddressTextBox" Text="{Binding Profile.Address, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" />
+            <TextBox Name="CusNameTextBox" Text="{Binding Profile.Name, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="10,1,10,1" FontSize="16"/>
+            <TextBox Name="CusPhoneTextBox" Text="{Binding Profile.Phone, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="10,1,10,1" FontSize="16"/>
+            <TextBox Name="CusEmailTextBox" Text="{Binding Profile.Email, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="10,1,10,1" FontSize="16"/>
+            <TextBox Name="CusAddressTextBox" Text="{Binding Profile.Address, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="10,1,10,1" FontSize="16"/>
             <TextBox Name="CusRoleIdTextBox" Visibility="Hidden" Text="{Binding Profile.RoleId, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" />
 
-            <Button Name="UpdateBtn" Content="Update" Command="{Binding UpdateCustomerCommand}" Grid.Row="6" Grid.Column="1" Width="100"/>
-
+            <Button Name="UpdateBtn" Content="Update" Command="{Binding UpdateCustomerCommand}" Grid.Row="6" Grid.Column="1" Width="120" Height="40" FontSize="16" Background="#32CD32" Foreground="White"/>
         </Grid>
-        <Button Content="Back" Click="BackButton" Grid.Row="0" Grid.Column="1" Width="100"/>
-        <Button Name="a" Content="Profile" Click="ProfileButton" Grid.Row="1" Grid.Column="1" Width="100"/>
-        <Button Name="ViewOrderHistoryBtn" Content="ViewOrderHistory" Click="UserOrderHistoryButton" Grid.Row="2" Grid.Column="1" Width="100"/>
+
+        <Button Content="Back" Click="BackButton" Grid.Row="0" Grid.Column="1" Width="100" Height="40" Background="#FF69B4" Foreground="White" FontSize="16"/>
+        <Button Name="a" Content="Profile" Click="ProfileButton" Grid.Row="1" Grid.Column="1" Width="100" Height="40" Background="#FF69B4" Foreground="White" FontSize="16"/>
+        <Button Name="ViewOrderHistoryBtn" Content="View Order History" Click="UserOrderHistoryButton" Grid.Row="2" Grid.Column="1" Width="120" Height="40" Background="#FF69B4" Foreground="White" FontSize="16"/>
     </Grid>
 </Window>
