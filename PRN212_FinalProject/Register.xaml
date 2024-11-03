@@ -23,39 +23,73 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Title -->
+        <TextBlock Text="Create an Account" FontSize="24" FontWeight="Bold" 
+                   HorizontalAlignment="Center" Margin="0,0,0,20" Grid.ColumnSpan="2" />
+
         <!-- Username -->
         <TextBlock Text="Username" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="UsernameTextBox" Grid.Row="0" Grid.Column="1" Width="200" Height="25" Margin="5" Text="{Binding Regis.Username}"/>
+        <TextBox x:Name="UsernameTextBox" Grid.Row="0" Grid.Column="1" 
+                 Margin="5" Text="{Binding Regis.Username}" 
+                 Padding="5" Background="#F5F5F5" 
+                 BorderBrush="#1E90FF" BorderThickness="1" />
 
         <!-- Password -->
         <TextBlock Text="Password" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" Width="200" Height="25" Margin="5" Text="{Binding Regis.Password}" />
+        <TextBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" 
+                 Margin="5" Text="{Binding Regis.Password}" 
+                 Padding="5" Background="#F5F5F5" 
+                 BorderBrush="#1E90FF" BorderThickness="1" />
 
         <!-- Name -->
         <TextBlock Text="Name" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="NameTextBox" Grid.Row="2" Grid.Column="1" Width="200" Height="25" Margin="5" Text="{Binding Regis.Name}"/>
+        <TextBox x:Name="NameTextBox" Grid.Row="2" Grid.Column="1" 
+                 Margin="5" Text="{Binding Regis.Name}" 
+                 Padding="5" Background="#F5F5F5" 
+                 BorderBrush="#1E90FF" BorderThickness="1" />
 
         <!-- Phone -->
         <TextBlock Text="Phone" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="PhoneTextBox" Grid.Row="3" Grid.Column="1" Width="200" Height="25" Margin="5" Text="{Binding Regis.Phone}"/>
+        <TextBox x:Name="PhoneTextBox" Grid.Row="3" Grid.Column="1" 
+                 Margin="5" Text="{Binding Regis.Phone}" 
+                 Padding="5" Background="#F5F5F5" 
+                 BorderBrush="#1E90FF" BorderThickness="1" />
 
         <!-- Email -->
         <TextBlock Text="Email" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="1" Width="200" Height="25" Margin="5" Text="{Binding Regis.Email}"/>
+        <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="1" 
+                 Margin="5" Text="{Binding Regis.Email}" 
+                 Padding="5" Background="#F5F5F5" 
+                 BorderBrush="#1E90FF" BorderThickness="1" />
 
         <!-- Address -->
         <TextBlock Text="Address" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="AddressTextBox" Grid.Row="5" Grid.Column="1" Width="200" Height="25" Margin="5" Text="{Binding Regis.Address}"/>
+        <TextBox x:Name="AddressTextBox" Grid.Row="5" Grid.Column="1" 
+                 Margin="5" Text="{Binding Regis.Address}" 
+                 Padding="5" Background="#F5F5F5" 
+                 BorderBrush="#1E90FF" BorderThickness="1" />
 
-        
         <!-- Register Button -->
-        <Button Content="Register" Grid.Row="6" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Command="{Binding RegisterCommand}" />
-        <Button Content="Login" Grid.Row="7" Grid.Column="1" Click="LoginButton" Width="100" Height="30"></Button>
+        <Button Content="Register" Grid.Row="6" Grid.Column="1" 
+                Width="100" Height="30" VerticalAlignment="Center" 
+                HorizontalAlignment="Center" Margin="10" 
+                Command="{Binding RegisterCommand}" 
+                Background="#1E90FF" Foreground="White" 
+                BorderThickness="0" />
+
+        <!-- Login Button -->
+        <Button Content="Login" Grid.Row="7" Grid.Column="1" 
+                Width="100" Height="30" VerticalAlignment="Center" 
+                HorizontalAlignment="Center" Margin="10" 
+                Click="LoginButton" 
+                Background="#87CEEB" Foreground="White" 
+                BorderThickness="0" />
     </Grid>
 
 </Window>
