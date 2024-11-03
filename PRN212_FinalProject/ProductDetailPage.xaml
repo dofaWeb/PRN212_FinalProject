@@ -12,42 +12,54 @@
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
-            <!-- Left Category Panel -->
             <ColumnDefinition Width="*"/>
-            <!-- Right Product Details -->
         </Grid.ColumnDefinitions>
 
-        <!-- Left Panel: Categories -->
-
         <!-- Right Panel: Product Details -->
-        <StackPanel Grid.Column="1" >
-            <Button Content="Back" Click="Back" Width="80" Margin="-750 0 0 20"/>
+        <StackPanel Grid.Column="1" Background="#FFF8DC" Margin="0 0 0 20" Height="600">
+            <!-- Increased height -->
+            <Button Content="Back" Click="Back" Width="100" Height="40" Margin="0 0 0 20" Background="#FF69B4" Foreground="White" BorderThickness="0" FontSize="16"/>
+            <!-- Hot pink button -->
 
             <!-- Product Image and Details -->
-            <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding Product.VirtualPicture}" Height="200" Margin="20"/>
-                <StackPanel Margin="20">
-                    <TextBlock Text="{Binding Product.Name}" FontSize="24" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding ProductItemInfor.PriceAfterDiscount}" FontSize="20" Foreground="Red" Margin="10 0"/>
-                    <TextBlock Text="Select Option:" FontSize="16" Margin="10 0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <Image Source="{Binding Product.VirtualPicture}" Height="250" Width="250" 
+                />
+                <!-- Golden border -->
 
+                <StackPanel Margin="20">
+                    <TextBlock Text="{Binding Product.Name}" FontSize="28" FontWeight="Bold" Foreground="#4682B4"/>
+                    <!-- Steel blue for title -->
+                    <TextBlock Text="{Binding ProductItemInfor.PriceAfterDiscount, StringFormat='{}{0:C}'}" 
+                       FontSize="24" Foreground="#FF4500" Margin="10 0"/>
+                    <!-- Orange-red for price -->
+                    <TextBlock Text="Select Option:" FontSize="18" Margin="10 0" Foreground="#8A2BE2"/>
+                    <!-- Blue violet for options label -->
 
                     <ComboBox Name="CategoryComboBox" 
-       ItemsSource="{Binding ProductItems}"
-       SelectedItem="{Binding ProductItemInfor, Mode=TwoWay}"
-       DisplayMemberPath="Option" 
-       SelectedValuePath="Id"
-       Grid.Row="5" Grid.Column="1" Margin="10,1,10,1"/>
+                      ItemsSource="{Binding ProductItems}"
+                      SelectedItem="{Binding ProductItemInfor, Mode=TwoWay}"
+                      DisplayMemberPath="Option" 
+                      SelectedValuePath="Id"
+                      Margin="10,5,10,5"
+                      Background="#FFDEAD"  
+                    Foreground="#4B0082"
+                   
+                    FontSize="16" Height="35" />
+                    <!-- Increased height -->
 
-
-
-
-                    <Button Content="Buy" Command="{Binding OrderCommand}" Background="Red" Foreground="White" Width="100" Margin="20 0"/>
+                    <Button Content="Buy" Command="{Binding OrderCommand}" 
+                    Background="#32CD32" Foreground="White"  
+                    Width="120" Height="40" Margin="20 0" 
+                    FontSize="16" BorderThickness="0"/>
+                    <!-- Larger buy button -->
                 </StackPanel>
             </StackPanel>
 
             <!-- Product Description -->
-            <TextBlock Text="{Binding Product.Description}" FontSize="20" Margin="10 0"/>
+            <TextBlock Text="{Binding Product.Description}" FontSize="18" 
+               Margin="10 0" TextWrapping="Wrap" 
+               Foreground="#555"/>
         </StackPanel>
     </Grid>
 </Page>
