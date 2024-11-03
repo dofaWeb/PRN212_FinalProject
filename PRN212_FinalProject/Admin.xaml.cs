@@ -40,7 +40,7 @@ namespace PRN212_FinalProject
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            MainPage.Content = new ListAcc();
+            
         }
 
         private void Order_Click(object sender, RoutedEventArgs e)
@@ -53,6 +53,11 @@ namespace PRN212_FinalProject
             Login login = new Login();
             login.Show();
             this.Close();
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            MainPage.Content = new ListAcc();
         }
     }
 }

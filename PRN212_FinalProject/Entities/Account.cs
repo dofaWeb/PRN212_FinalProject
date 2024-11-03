@@ -25,6 +25,7 @@ public partial class Account
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
+
     public virtual RoleName? Role { get; set; }
 
     public virtual AccountState? State { get; set; }

@@ -18,7 +18,7 @@
         <Menu Grid.Column="0" Width="100" HorizontalAlignment="Left" Margin="0,23,0,-6" >
             <MenuItem Height="50" Width="100" Header="Product" Background="Red" Click="Product_Click"></MenuItem>
             <MenuItem Height="50" Width="100" Header="Category" Background="Yellow" Click="Category_Click" ></MenuItem>
-            <MenuItem Height="50" Width="100" Header="User" Background="Pink" ></MenuItem>
+            <MenuItem Height="50" Width="100" Header="User" Background="Pink" Click="MenuItem_Click_2" ></MenuItem>
             <MenuItem Height="50" Width="100" Header="Supplier" Background="BlueViolet" Click="MenuItem_Click"></MenuItem>
             <MenuItem Height="50" Width="100" Header="Order" Background="DarkGoldenrod" Click="Order_Click"></MenuItem>
             <MenuItem Height="50" Width="100" Header="Logout" Background="Azure" Click="Logout_Click"></MenuItem>
