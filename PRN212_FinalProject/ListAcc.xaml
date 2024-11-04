@@ -49,17 +49,17 @@
         <TextBox Name="CusBirthdayTextBox" Grid.Row="5" Grid.Column="1" Margin="10,1,10,1" Text="{Binding Adress}"></TextBox>
         <!-- Role ComboBox -->
         <ComboBox Grid.Row="6" Grid.Column="1" Margin="10,1,10,1"
-ItemsSource="{Binding AccountRoles}" 
-DisplayMemberPath="Name" 
-SelectedValuePath="Id" 
-SelectedValue="{Binding RoleId, Mode=TwoWay}" />
+            ItemsSource="{Binding AccountRoles}" 
+            DisplayMemberPath="Name" 
+            SelectedValuePath="Id" 
+            SelectedValue="{Binding RoleId, Mode=TwoWay}" />
 
         <!-- State ComboBox -->
         <ComboBox Grid.Row="7" Grid.Column="1" Margin="10,1,10,1"
-ItemsSource="{Binding AccountStates}" 
-DisplayMemberPath="Name" 
-SelectedValuePath="Id" 
-SelectedValue="{Binding StateId, Mode=TwoWay}" />
+            ItemsSource="{Binding AccountStates}" 
+            DisplayMemberPath="Name" 
+            SelectedValuePath="Id" 
+            SelectedValue="{Binding StateId, Mode=TwoWay}" />
         <TextBox Name="CusPassTextBox" Grid.Row="8" Grid.Column="1" Margin="10,1,10,1" Text="{Binding Password}"></TextBox>
 
 

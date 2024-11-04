@@ -76,14 +76,14 @@ namespace PRN212_FinalProject.ViewModel
                 MessageBox.Show("Vui lòng nhập mật khẩu.");
                 return;
             }
-            string hashedPassword = HashPasswordWithMD5(Password);
+            
 
 
             var newAccount = new Entities.Account
             {
                 Id = GetNewId(),
                 Username = Username,
-                Password = hashedPassword,
+                Password = Password,
                 Name = Username,
                 Phone = Phone,
                 Email = Email,
@@ -215,24 +215,7 @@ namespace PRN212_FinalProject.ViewModel
 
             return newId;
         }
-        public string HashPasswordWithMD5(string password)
-        {
-            using (MD5 md5Hash = MD5.Create())
-            {
-                // Chuyển mật khẩu thành byte array
-                byte[] bytes = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-                // Chuyển đổi byte array thành chuỗi hexa
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-
-                // Trả về chuỗi hash MD5
-                return builder.ToString();
-            }
-        }
+       
 
         public dynamic GetRole()
         {
