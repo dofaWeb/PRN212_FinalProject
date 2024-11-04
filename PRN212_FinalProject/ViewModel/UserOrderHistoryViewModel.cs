@@ -169,7 +169,7 @@ namespace PRN212_FinalProject.ViewModel
                     VariationInfor = _selectedItem.ProductItem.Option;
                     PriceInfor = _selectedItem.Price;
                     StateInfor = _selectedItem.State;
-                    CanDelete = StateInfor?.Name != "Approved";
+                    CanDelete = StateInfor?.Name == "Pending";
                 }
                 OnPropertyChanged(nameof(SelectedItem));
             }
