@@ -18,7 +18,7 @@ namespace PRN212_FinalProject.ViewModel
         public ProfileViewModel()
         {
             db = new Entities.DBContext();
-            UpdateCustomerCommand = new RelayCommand(UpdateCustomer);
+            UpdateCustomerCommand = new RelayCommand(UpdateCustomer);   
         }
 
         public ProfileViewModel(string customerId) : this() 

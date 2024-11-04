@@ -37,41 +37,51 @@ namespace PRN212_FinalProject.ViewModel
             {
                 Id = a.Id,
                 RoleId = a.RoleId,
+                StateId = a.StateId,
             }).FirstOrDefault();
 
             if (acc != null)
             {
-                switch (acc.RoleId)
+                if (acc.StateId == "S0000001")
                 {
-                    case "Role0001":
-                        Admin adminWindow = new Admin();
-                        adminWindow.Show();
-                        break;
+                    // Account is active, proceed based on role
+                    switch (acc.RoleId)
+                    {
+                        case "Role0001":
+                            Admin adminWindow = new Admin();
+                            adminWindow.Show();
+                            break;
 
+                        case "Role0002":
+                            UserViewModel viewModel = new UserViewModel(acc.Id);
+                            User userWindow = new User(viewModel, acc.Id);
+                            userWindow.Show();
+                            break;
 
-                    case "Role0002":
-                        UserViewModel viewModel = new UserViewModel(acc.Id);
-                        User userWindow = new User(viewModel, acc.Id);
+                        default:
+                            MessageBox.Show("UserName or PassWord invalid");
+                            break;
+                    }
 
-                        //Profile profileWindow = new Profile(acc.Id);
-                        userWindow.Show();
-                        //profileWindow.Show();
-
-                        break;
-
-
-                    default:
-                        MessageBox.Show("UserName or PassWord invalid");
-                        break;
-
+                    // Close the Login window
+                    Application.Current.Windows.OfType<Login>().FirstOrDefault()?.Close();
                 }
-                // Close the Login window
-                Application.Current.Windows.OfType<Login>().FirstOrDefault()?.Close();
+                else if (acc.StateId == "S0000002")
+                {
+                    // Account is banned
+                    MessageBox.Show("Your account has been banned. Please log in with a different account.");
+                }
+                else
+                {
+                    // Handle other states if necessary
+                    MessageBox.Show("Invalid account state.");
+                }
             }
             else
             {
                 MessageBox.Show("UserName or PassWord invalid");
             }
         }
+
     }
 }
